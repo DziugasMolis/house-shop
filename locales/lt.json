@@ -1,0 +1,125 @@
+{
+  "navigation": {
+    "home": "Pradžia",
+    "shop": "Parduotuvė",
+    "about": "Apie",
+    "blog": "Tinklaraštis",
+    "contact": "Kontaktai"
+  },
+  "hero": {
+    "badge": "Kas naujo",
+    "badgeText": "Ką tik išleista v1.0",
+    "title": "Sukurkite Savo Svetimąjį Namą su Premium Namų Projektais",
+    "description": "Atraskite mūsų kruopščiai suprojektuotų namų projektų kolekciją. Nuo modernių minimalistinių namų iki klasikinių šeimos rezidencijų, raskite tobulą planą savo svajonių namui. Kiekvienas projektas turi detales planus, 3D vizualizacijas ir ekspertų vadovavimą.",
+    "browseButton": "Naršyti Projektus",
+    "learnMore": "Sužinoti daugiau"
+  },
+  "featured": {
+    "title": "Išskirti Namų Projektai",
+    "description": "Tyrinėkite mūsų populiariausius ir inovatyviausius namų dizainus, kurie padėjo nesuskaičiuojamoms šeimoms pastatyti savo svajonių namus.",
+    "bedrooms": "miegamieji",
+    "bathrooms": "vonios",
+    "viewAll": "Peržiūrėti Visus Projektus"
+  },
+  "products": {
+    "featured": "Išskirti Namų Projektai",
+    "browseAll": "Naršyti visus projektus",
+    "addToCart": "Pridėti į Krepšelį",
+    "bedrooms": "miegamieji",
+    "bathrooms": "vonios",
+    "area": "m²",
+    "price": "Kaina",
+    "rating": "Įvertinimas",
+    "reviews": "atsiliepimai"
+  },
+  "shop": {
+    "title": "Namų Projektai",
+    "description": "Naršykite mūsų visą premium namų projektų kolekciją. Filtruokite pagal stilių, dydį ir kainą, kad rastumėte tobulą dizainą savo poreikiams."
+  },
+  "filters": {
+    "title": "Filtrai",
+    "clearAll": "Išvalyti visus",
+    "category": "Kategorija",
+    "bedrooms": "Miegamieji",
+    "bathrooms": "Vonios",
+    "area": "Plotas (m²)",
+    "priceRange": "Kainos diapazonas",
+    "modern": "Modernus",
+    "traditional": "Tradicinis",
+    "luxury": "Prabangus",
+    "cottage": "Kotedžas",
+    "under2000": "Mažiau nei 2000€",
+    "2000to3000": "2000€ - 3000€",
+    "3000to4000": "3000€ - 4000€",
+    "over4000": "Daugiau nei 4000€"
+  },
+  "cart": {
+    "title": "Pirkinių Krepšelis",
+    "empty": "Jūsų krepšelis tuščias. Pradėkite apsipirkinėti, kad pridėtumėte namų projektų į krepšelį.",
+    "continueShopping": "Tęsti Apsipirkinėjimą",
+    "quantity": "Kiekis",
+    "subtotal": "Tarpinė suma",
+    "total": "Iš viso",
+    "orderSummary": "Užsakymo Santrauka",
+    "checkout": "Atsiskaityti",
+    "clearCart": "Išvalyti Krepšelį",
+    "remove": "Pašalinti"
+  },
+  "about": {
+    "title": "Apie Namų Parduotuvę",
+    "subtitle": "Kuriame Svajones, Vieną Projektą Vienu Metu",
+    "description": "Mes specializuojamės kuriant premium namų projektus, kurie sujungia inovatyvų dizainą su praktiška funkcionalumu. Mūsų tikslas - padėti jums pastatyti savo svajonių namą su profesionaliais planais ir ekspertų vadovavimu.",
+    "mission": "Mūsų Misija",
+    "missionText": "Teikti inovatyvius, aukštos kokybės namų projektus, kurie padeda žmonėms pastatyti savo svajonių namus su pasitikėjimu ir stiliumi.",
+    "vision": "Mūsų Vizija",
+    "visionText": "Tapti pirmaujančia platforma premium namų dizainams, sujungiant namų savininkus su išskirtiniais architektūriniais sprendimais.",
+    "values": "Mūsų Vertybės",
+    "valuesText": "Kokybė, inovacijos, tvarumas ir klientų pasitenkinimas yra visko, ką darome, šerdis.",
+    "stats": {
+      "projects": "Atlikti Projektai",
+      "architects": "Ekspertų Architektų",
+      "experience": "Metų Patirties",
+      "satisfaction": "Klientų Pasitenkinimas"
+    },
+    "features": {
+      "designTeam": "Ekspertų Dizaino Komanda",
+      "designTeamDesc": "Mūsų patyrusių architektų ir dizainerių komanda kuria inovatyvius, funkcionalius ir gražius namų projektus.",
+      "documentation": "Detalūs Dokumentai",
+      "documentationDesc": "Kiekvienas projektas apima išsamius planus, 3D vizualizacijas, medžiagų sąrašus ir statybos gaires.",
+      "quality": "Kokybės Užtikrinimas",
+      "qualityDesc": "Visi mūsų dizainai praeina kruopščius kokybės patikrinimus, kad būtų užtikrinta, jog jie atitinka statybos kodus ir pramonės standartus.",
+      "support": "Nuolatinė Palaikymas",
+      "supportDesc": "Gaukite ekspertų vadovavimą visą statybos procesą su mūsų specializuota palaikymo komanda."
+    }
+  },
+  "contact": {
+    "title": "Susisiekite",
+    "description": "Turite klausimų apie mūsų namų projektus? Reikia pagalbos pasirinkti tinkamą dizainą? Mūsų komanda čia, kad padėtų jums kiekviename žingsnyje.",
+    "getInTouch": "Susisiekite",
+    "address": "Adresas",
+    "addressText": "Pagrindinė g. 123, Miestas, Valstija 12345",
+    "phone": "Telefonas",
+    "email": "El. paštas",
+    "form": {
+      "name": "Vardas",
+      "email": "El. paštas",
+      "phone": "Telefono numeris",
+      "message": "Žinutė",
+      "submit": "Siųsti žinutę"
+    }
+  },
+  "blog": {
+    "title": "Tinklaraštis",
+    "description": "Įžvalgos, patarimai ir įkvėpimas jūsų namų statybos kelionei.",
+    "readMore": "Skaityti daugiau",
+    "minRead": "min skaitymo"
+  },
+  "footer": {
+    "copyright": "© 2024 Namų Parduotuvė. Visos teisės saugomos."
+  },
+  "metadata": {
+    "title": "Namų Parduotuvė - Premium Namų Projektai",
+    "description": "Atraskite gražius ir inovatyvius namų projektus. Nuo modernių dizainų iki klasikinės architektūros, raskite savo tobulą namo planą.",
+    "keywords": "namų projektai, namų dizainas, architektūra, namų planai, statyba"
+  }
+} 

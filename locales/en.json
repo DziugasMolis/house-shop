@@ -1,0 +1,125 @@
+{
+  "navigation": {
+    "home": "Home",
+    "shop": "Shop",
+    "about": "About",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "What's new",
+    "badgeText": "Just shipped v1.0",
+    "title": "Build Your Dream Home with Premium House Projects",
+    "description": "Discover our collection of meticulously designed house projects. From modern minimalist homes to classic family residences, find the perfect blueprint for your dream home. Each project comes with detailed plans, 3D visualizations, and expert guidance.",
+    "browseButton": "Browse Projects",
+    "learnMore": "Learn more"
+  },
+  "featured": {
+    "title": "Featured House Projects",
+    "description": "Explore our most popular and innovative house designs that have helped countless families build their dream homes.",
+    "bedrooms": "beds",
+    "bathrooms": "baths",
+    "viewAll": "View All Projects"
+  },
+  "products": {
+    "featured": "Featured House Projects",
+    "browseAll": "Browse all projects",
+    "addToCart": "Add to Cart",
+    "bedrooms": "beds",
+    "bathrooms": "baths",
+    "area": "m²",
+    "price": "Price",
+    "rating": "Rating",
+    "reviews": "reviews"
+  },
+  "shop": {
+    "title": "House Projects",
+    "description": "Browse our complete collection of premium house projects. Filter by style, size, and price to find the perfect design for your needs."
+  },
+  "filters": {
+    "title": "Filters",
+    "clearAll": "Clear all",
+    "category": "Category",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "area": "Area (m²)",
+    "priceRange": "Price Range",
+    "modern": "Modern",
+    "traditional": "Traditional",
+    "luxury": "Luxury",
+    "cottage": "Cottage",
+    "under2000": "Under $2,000",
+    "2000to3000": "$2,000 - $3,000",
+    "3000to4000": "$3,000 - $4,000",
+    "over4000": "Over $4,000"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty. Start shopping to add some house projects to your cart.",
+    "continueShopping": "Continue Shopping",
+    "quantity": "Quantity",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "orderSummary": "Order Summary",
+    "checkout": "Checkout",
+    "clearCart": "Clear Cart",
+    "remove": "Remove"
+  },
+  "about": {
+    "title": "About House Shop",
+    "subtitle": "Building Dreams, One Project at a Time",
+    "description": "We specialize in creating premium house projects that combine innovative design with practical functionality. Our mission is to help you build the home of your dreams with professional-grade plans and expert guidance.",
+    "mission": "Our Mission",
+    "missionText": "To provide innovative, high-quality house projects that help people build their dream homes with confidence and style.",
+    "vision": "Our Vision",
+    "visionText": "To become the leading platform for premium house designs, connecting homeowners with exceptional architectural solutions.",
+    "values": "Our Values",
+    "valuesText": "Quality, innovation, sustainability, and customer satisfaction are at the heart of everything we do.",
+    "stats": {
+      "projects": "Projects Completed",
+      "architects": "Expert Architects",
+      "experience": "Years Experience",
+      "satisfaction": "Customer Satisfaction"
+    },
+    "features": {
+      "designTeam": "Expert Design Team",
+      "designTeamDesc": "Our team of experienced architects and designers create innovative, functional, and beautiful house projects.",
+      "documentation": "Detailed Documentation",
+      "documentationDesc": "Every project includes comprehensive plans, 3D visualizations, material lists, and construction guidelines.",
+      "quality": "Quality Assurance",
+      "qualityDesc": "All our designs undergo rigorous quality checks to ensure they meet building codes and industry standards.",
+      "support": "Ongoing Support",
+      "supportDesc": "Get expert guidance throughout your construction process with our dedicated support team."
+    }
+  },
+  "contact": {
+    "title": "Get in touch",
+    "description": "Have questions about our house projects? Need help choosing the right design? Our team is here to help you every step of the way.",
+    "getInTouch": "Get in touch",
+    "address": "Address",
+    "addressText": "123 Main Street, City, State 12345",
+    "phone": "Phone",
+    "email": "Email",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone number",
+      "message": "Message",
+      "submit": "Send message"
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Insights, tips, and inspiration for your house building journey.",
+    "readMore": "Read more",
+    "minRead": "min read"
+  },
+  "footer": {
+    "copyright": "© 2024 House Shop. All rights reserved."
+  },
+  "metadata": {
+    "title": "House Shop - Premium House Projects",
+    "description": "Discover beautiful and innovative house projects. From modern designs to classic architecture, find your perfect home blueprint.",
+    "keywords": "house projects, home design, architecture, house plans, construction"
+  }
+} 
