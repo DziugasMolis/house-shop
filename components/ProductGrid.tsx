@@ -4,20 +4,20 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { StarIcon, HeartIcon } from '@heroicons/react/20/solid'
 import { HeartIcon as HeartOutlineIcon } from '@heroicons/react/24/outline'
-import { useLikedProjectsStore } from '@/store/likedProjectsStore'
+import { useRememberedProjectsStore } from '@/store/rememberedProjectsStore'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { useFilter } from '@/contexts/FilterContext'
 
 export default function ProductGrid() {
   const { filteredProducts } = useFilter()
-  const { addToLiked, removeFromLiked, isLiked } = useLikedProjectsStore()
+  const { addToRemembered, removeFromRemembered, isRemembered } = useRememberedProjectsStore()
   const { t } = useLanguage()
 
-  const toggleLike = (product: any) => {
-    if (isLiked(product.id)) {
-      removeFromLiked(product.id)
+  const toggleRemember = (product: any) => {
+    if (isRemembered(product.id)) {
+      removeFromRemembered(product.id)
     } else {
-      addToLiked({
+      addToRemembered({
         id: product.id,
         name: product.name,
         price: product.price,
@@ -47,10 +47,10 @@ export default function ProductGrid() {
                   />
                 </Link>
                 <button
-                  onClick={() => toggleLike(product)}
+                  onClick={() => toggleRemember(product)}
                   className="absolute top-2 right-2 p-1 rounded-full bg-white/80 hover:bg-white transition-colors"
                 >
-                  {isLiked(product.id) ? (
+                  {isRemembered(product.id) ? (
                     <HeartIcon className="h-5 w-5 text-red-500" />
                   ) : (
                     <HeartOutlineIcon className="h-5 w-5 text-gray-600" />
@@ -97,14 +97,14 @@ export default function ProductGrid() {
                   {t('products.viewDetails')}
                 </Link>
                 <button
-                  onClick={() => toggleLike(product)}
+                  onClick={() => toggleRemember(product)}
                   className={`flex-1 text-center py-2 px-4 rounded-md text-sm font-medium transition-colors ${
-                    isLiked(product.id)
+                    isRemembered(product.id)
                       ? 'border border-red-300 text-red-700 hover:bg-red-50'
                       : 'border border-primary-300 text-primary-700 hover:bg-primary-50'
                   }`}
                 >
-                  {isLiked(product.id) ? t('liked.remove') : t('liked.add')}
+                  {isRemembered(product.id) ? t('remembered.remove') : t('remembered.add')}
                 </button>
               </div>
             </div>

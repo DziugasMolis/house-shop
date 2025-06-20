@@ -11,11 +11,65 @@ export default function ContactSection() {
     phone: '',
     message: '',
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
-    console.log('Form submitted:', formData)
+    
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      setSubmitStatus('error')
+      return
+    }
+
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      // Using Formspree - same endpoint as product inquiry form
+      const formEndpoint = 'https://formspree.io/f/xnnvbzee'
+      
+      const formDataToSend = new FormData()
+      formDataToSend.append('email', 'svilinuks@gmail.com') // Recipient email
+      formDataToSend.append('subject', 'Contact Form Submission - House Shop')
+      formDataToSend.append('message', `
+Contact Form Submission
+
+Customer Information:
+- Name: ${formData.name}
+- Email: ${formData.email}
+- Phone: ${formData.phone || 'Not provided'}
+
+Message:
+${formData.message}
+
+---
+This message was sent from the House Shop contact form.
+      `.trim())
+
+      const response = await fetch(formEndpoint, {
+        method: 'POST',
+        body: formDataToSend,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+
+      if (response.ok) {
+        setSubmitStatus('success')
+        setFormData({ name: '', email: '', phone: '', message: '' })
+        setTimeout(() => {
+          setSubmitStatus('idle')
+        }, 3000)
+      } else {
+        throw new Error('Failed to send message')
+      }
+    } catch (error) {
+      console.error('Error sending contact form:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -23,6 +77,10 @@ export default function ContactSection() {
       ...formData,
       [e.target.name]: e.target.value,
     })
+    // Clear error status when user starts typing
+    if (submitStatus === 'error') {
+      setSubmitStatus('idle')
+    }
   }
 
   return (
@@ -70,8 +128,8 @@ export default function ContactSection() {
                   </svg>
                 </dt>
                 <dd>
-                  <a className="hover:text-gray-900" href="mailto:hello@example.com">
-                    hello@example.com
+                  <a className="hover:text-gray-900" href="mailto:svilinuks@gmail.com">
+                    svilinuks@gmail.com
                   </a>
                 </dd>
               </div>
@@ -80,7 +138,7 @@ export default function ContactSection() {
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             <div>
               <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
-                {t('contact.form.name')}
+                {t('contact.form.name')} *
               </label>
               <div className="mt-2">
                 <input
@@ -96,7 +154,7 @@ export default function ContactSection() {
             </div>
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                {t('contact.form.email')}
+                {t('contact.form.email')} *
               </label>
               <div className="mt-2">
                 <input
@@ -127,7 +185,7 @@ export default function ContactSection() {
             </div>
             <div>
               <label htmlFor="message" className="block text-sm font-medium leading-6 text-gray-900">
-                {t('contact.form.message')}
+                {t('contact.form.message')} *
               </label>
               <div className="mt-2">
                 <textarea
@@ -141,12 +199,30 @@ export default function ContactSection() {
                 />
               </div>
             </div>
+
+            {submitStatus === 'success' && (
+              <div className="rounded-md bg-green-50 p-4">
+                <div className="text-sm text-green-700">
+                  Your message has been sent successfully! We'll get back to you soon.
+                </div>
+              </div>
+            )}
+
+            {submitStatus === 'error' && (
+              <div className="rounded-md bg-red-50 p-4">
+                <div className="text-sm text-red-700">
+                  There was an error sending your message. Please try again.
+                </div>
+              </div>
+            )}
+
             <div>
               <button
                 type="submit"
-                className="rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
+                disabled={isSubmitting}
+                className="rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {t('contact.form.submit')}
+                {isSubmitting ? 'Sending...' : t('contact.form.submit')}
               </button>
             </div>
           </form>

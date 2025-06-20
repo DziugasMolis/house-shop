@@ -10,17 +10,20 @@ import {
   Square3Stack3DIcon,
   MapPinIcon,
   CalendarIcon,
-  CheckCircleIcon
+  CheckCircleIcon,
+  EnvelopeIcon
 } from '@heroicons/react/24/outline'
-import { useLikedProjectsStore } from '@/store/likedProjectsStore'
+import { useRememberedProjectsStore } from '@/store/rememberedProjectsStore'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { useFilter } from '@/contexts/FilterContext'
+import ProductInquiryForm from '@/components/ProductInquiryForm'
 
 export default function ProductDetailPage() {
   const params = useParams()
   const productId = params.id as string
   const [selectedImage, setSelectedImage] = useState(0)
-  const { addToLiked, removeFromLiked, isLiked } = useLikedProjectsStore()
+  const [isInquiryOpen, setIsInquiryOpen] = useState(false)
+  const { addToRemembered, removeFromRemembered, isRemembered } = useRememberedProjectsStore()
   const { t } = useLanguage()
   const { allProducts } = useFilter()
 
@@ -30,11 +33,11 @@ export default function ProductDetailPage() {
     notFound()
   }
 
-  const toggleLike = () => {
-    if (isLiked(product.id)) {
-      removeFromLiked(product.id)
+  const toggleRemember = () => {
+    if (isRemembered(product.id)) {
+      removeFromRemembered(product.id)
     } else {
-      addToLiked({
+      addToRemembered({
         id: product.id,
         name: product.name,
         price: product.price,
@@ -114,10 +117,10 @@ export default function ProductDetailPage() {
                 className="h-full w-full object-cover object-center"
               />
               <button
-                onClick={toggleLike}
+                onClick={toggleRemember}
                 className="absolute top-4 right-4 p-2 rounded-full bg-white/80 hover:bg-white transition-colors"
               >
-                {isLiked(product.id) ? (
+                {isRemembered(product.id) ? (
                   <HeartIcon className="h-6 w-6 text-red-500" />
                 ) : (
                   <HeartOutlineIcon className="h-6 w-6 text-gray-600" />
@@ -188,17 +191,27 @@ export default function ProductDetailPage() {
                 ))}
               </div>
 
-              {/* Like Button */}
-              <button
-                onClick={toggleLike}
-                className={`w-full py-3 px-6 rounded-lg font-medium transition-colors mb-8 ${
-                  isLiked(product.id)
-                    ? 'bg-red-600 text-white hover:bg-red-700'
-                    : 'bg-primary-600 text-white hover:bg-primary-700'
-                }`}
-              >
-                {isLiked(product.id) ? t('liked.remove') : t('liked.add')}
-              </button>
+              {/* Action Buttons */}
+              <div className="space-y-4 mb-8">
+                <button
+                  onClick={toggleRemember}
+                  className={`w-full py-3 px-6 rounded-lg font-medium transition-colors ${
+                    isRemembered(product.id)
+                      ? 'bg-red-600 text-white hover:bg-red-700'
+                      : 'bg-primary-600 text-white hover:bg-primary-700'
+                  }`}
+                >
+                  {isRemembered(product.id) ? t('remembered.remove') : t('remembered.add')}
+                </button>
+                
+                <button
+                  onClick={() => setIsInquiryOpen(true)}
+                  className="w-full py-3 px-6 rounded-lg font-medium bg-gray-600 text-white hover:bg-gray-700 transition-colors flex items-center justify-center"
+                >
+                  <EnvelopeIcon className="h-5 w-5 mr-2" />
+                  {t('products.inquiry')}
+                </button>
+              </div>
 
               {/* Quick Info */}
               <div className="border-t border-gray-200 pt-6">
@@ -273,6 +286,13 @@ export default function ProductDetailPage() {
           </div>
         </div>
       </div>
+      
+      {/* Product Inquiry Form Modal */}
+      <ProductInquiryForm
+        isOpen={isInquiryOpen}
+        onClose={() => setIsInquiryOpen(false)}
+        product={product}
+      />
     </div>
   )
 } 

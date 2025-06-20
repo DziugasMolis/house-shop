@@ -42,7 +42,8 @@
     "inStock": "Yra sandėlyje",
     "freeShipping": "Nemokamas pristatymas",
     "noProductsFound": "Produktų nerasta",
-    "adjustFilters": "Pabandykite pakeisti filtrus, kad pamatytumėte daugiau rezultatų."
+    "adjustFilters": "Pabandykite pakeisti filtrus, kad pamatytumėte daugiau rezultatų.",
+    "inquiry": "Užklausti Informacijos"
   },
   "shop": {
     "title": "Namų Projektai",
@@ -66,15 +67,33 @@
     "3000to4000": "3000€ - 4000€",
     "over4000": "Daugiau nei 4000€"
   },
-  "liked": {
-    "title": "Patikę Projektai",
-    "empty": "Dar nėra patikusių projektų",
+  "remembered": {
+    "title": "Įsiminti projektai",
+    "empty": "Dar nėra įsimintų projektų",
     "emptyDescription": "Pradėkite naršyti mūsų namų projektus ir pažymėkite tuos, kurie jus domina, kad juos pamatytumėte čia.",
     "browseProjects": "Naršyti Projektus",
     "projects": "projektai",
     "clearAll": "Išvalyti visus",
     "remove": "Pašalinti",
-    "add": "Patinka Projektas"
+    "add": "Įsiminti projektą"
+  },
+  "inquiry": {
+    "title": "Užklausti Informacijos",
+    "name": "Pilnas Vardas",
+    "email": "El. Pašto Adresas",
+    "phone": "Telefono Numeris",
+    "address": "Adresas",
+    "message": "Papildomas Pranešimas",
+    "messagePlaceholder": "Papasakokite daugiau apie savo reikalavimus, laikotarpį arba bet kokius konkrečius klausimus apie šį projektą...",
+    "send": "Siųsti Užklausą",
+    "sending": "Siunčiama...",
+    "cancel": "Atšaukti",
+    "success": "Jūsų užklausa sėkmingai išsiųsta! Atsakysime jums netrukus.",
+    "error": "Įvyko klaida siunčiant užklausą. Bandykite dar kartą arba susisiekite su mumis tiesiogiai.",
+    "contactNote": "Prašome pateikti el. pašto adresą arba telefono numerį, kad galėtume su jumis susisiekti.",
+    "nameRequired": "Prašome įvesti savo pilną vardą.",
+    "addressRequired": "Prašome įvesti savo adresą.",
+    "contactRequired": "Prašome pateikti el. pašto adresą arba telefono numerį."
   },
   "cart": {
     "title": "Pirkinių Krepšelis",

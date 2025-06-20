@@ -42,7 +42,8 @@
     "inStock": "In stock",
     "freeShipping": "Free shipping",
     "noProductsFound": "No products found",
-    "adjustFilters": "Try adjusting your filters to see more results."
+    "adjustFilters": "Try adjusting your filters to see more results.",
+    "inquiry": "Request Information"
   },
   "shop": {
     "title": "House Projects",
@@ -66,15 +67,33 @@
     "3000to4000": "$3,000 - $4,000",
     "over4000": "Over $4,000"
   },
-  "liked": {
-    "title": "Liked Projects",
-    "empty": "No liked projects yet",
-    "emptyDescription": "Start browsing our house projects and like the ones you're interested in to see them here.",
+  "remembered": {
+    "title": "Remembered Projects",
+    "empty": "No remembered projects yet",
+    "emptyDescription": "Start browsing our house projects and remember the ones you're interested in to see them here.",
     "browseProjects": "Browse Projects",
     "projects": "projects",
     "clearAll": "Clear all",
     "remove": "Remove",
-    "add": "Like Project"
+    "add": "Remember Project"
+  },
+  "inquiry": {
+    "title": "Request Information",
+    "name": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "address": "Address",
+    "message": "Additional Message",
+    "messagePlaceholder": "Tell us more about your requirements, timeline, or any specific questions you have about this project...",
+    "send": "Send Inquiry",
+    "sending": "Sending...",
+    "cancel": "Cancel",
+    "success": "Your inquiry has been sent successfully! We'll get back to you soon.",
+    "error": "There was an error sending your inquiry. Please try again or contact us directly.",
+    "contactNote": "Please provide either an email address or phone number so we can contact you.",
+    "nameRequired": "Please enter your full name.",
+    "addressRequired": "Please enter your address.",
+    "contactRequired": "Please provide either an email address or phone number."
   },
   "cart": {
     "title": "Shopping Cart",
