@@ -25,12 +25,24 @@
     "featured": "Featured House Projects",
     "browseAll": "Browse all projects",
     "addToCart": "Add to Cart",
+    "viewDetails": "View Details",
     "bedrooms": "beds",
     "bathrooms": "baths",
     "area": "m²",
     "price": "Price",
     "rating": "Rating",
-    "reviews": "reviews"
+    "reviews": "reviews",
+    "specifications": "Specifications",
+    "features": "Features & Amenities",
+    "aboutDesign": "About This Design",
+    "totalArea": "Total Area",
+    "floorPlan": "Floor Plan",
+    "garage": "Garage",
+    "yearBuilt": "Year Built",
+    "inStock": "In stock",
+    "freeShipping": "Free shipping",
+    "noProductsFound": "No products found",
+    "adjustFilters": "Try adjusting your filters to see more results."
   },
   "shop": {
     "title": "House Projects",
@@ -42,6 +54,7 @@
     "category": "Category",
     "bedrooms": "Bedrooms",
     "bathrooms": "Bathrooms",
+    "floors": "Floors",
     "area": "Area (m²)",
     "priceRange": "Price Range",
     "modern": "Modern",
@@ -52,6 +65,16 @@
     "2000to3000": "$2,000 - $3,000",
     "3000to4000": "$3,000 - $4,000",
     "over4000": "Over $4,000"
+  },
+  "liked": {
+    "title": "Liked Projects",
+    "empty": "No liked projects yet",
+    "emptyDescription": "Start browsing our house projects and like the ones you're interested in to see them here.",
+    "browseProjects": "Browse Projects",
+    "projects": "projects",
+    "clearAll": "Clear all",
+    "remove": "Remove",
+    "add": "Like Project"
   },
   "cart": {
     "title": "Shopping Cart",

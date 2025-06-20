@@ -2,14 +2,14 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { ShoppingCartIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { useCartStore } from '@/store/cartStore'
+import { HeartIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useLikedProjectsStore } from '@/store/likedProjectsStore'
 import { useLanguage } from '@/contexts/LanguageContext'
 import LanguageSwitcher from './LanguageSwitcher'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const cartItems = useCartStore((state) => state.items)
+  const likedCount = useLikedProjectsStore((state) => state.likedCount)
   const { t } = useLanguage()
 
   const navigation = [
@@ -51,11 +51,11 @@ export default function Header() {
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-x-4">
           <LanguageSwitcher />
-          <Link href="/cart" className="relative text-sm font-semibold leading-6 text-gray-900 hover:text-primary-600">
-            <ShoppingCartIcon className="h-6 w-6" />
-            {cartItems.length > 0 && (
-              <span className="absolute -top-2 -right-2 bg-primary-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                {cartItems.length}
+          <Link href="/liked" className="relative text-sm font-semibold leading-6 text-gray-900 hover:text-primary-600">
+            <HeartIcon className="h-6 w-6" />
+            {likedCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                {likedCount}
               </span>
             )}
           </Link>
@@ -98,12 +98,12 @@ export default function Header() {
                   <div className="flex items-center justify-between">
                     <LanguageSwitcher />
                     <Link
-                      href="/cart"
+                      href="/liked"
                       className="flex items-center gap-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 px-3 py-2 rounded-lg"
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      <ShoppingCartIcon className="h-6 w-6" />
-                      Cart ({cartItems.length})
+                      <HeartIcon className="h-6 w-6" />
+                      {t('liked.title')} ({likedCount})
                     </Link>
                   </div>
                 </div>

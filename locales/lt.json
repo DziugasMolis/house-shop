@@ -25,12 +25,24 @@
     "featured": "Išskirti Namų Projektai",
     "browseAll": "Naršyti visus projektus",
     "addToCart": "Pridėti į Krepšelį",
+    "viewDetails": "Peržiūrėti Detales",
     "bedrooms": "miegamieji",
     "bathrooms": "vonios",
     "area": "m²",
     "price": "Kaina",
     "rating": "Įvertinimas",
-    "reviews": "atsiliepimai"
+    "reviews": "atsiliepimai",
+    "specifications": "Specifikacijos",
+    "features": "Funkcijos ir Patogumai",
+    "aboutDesign": "Apie Šį Dizainą",
+    "totalArea": "Bendras Plotas",
+    "floorPlan": "Planas",
+    "garage": "Garažas",
+    "yearBuilt": "Statybos Metai",
+    "inStock": "Yra sandėlyje",
+    "freeShipping": "Nemokamas pristatymas",
+    "noProductsFound": "Produktų nerasta",
+    "adjustFilters": "Pabandykite pakeisti filtrus, kad pamatytumėte daugiau rezultatų."
   },
   "shop": {
     "title": "Namų Projektai",
@@ -42,6 +54,7 @@
     "category": "Kategorija",
     "bedrooms": "Miegamieji",
     "bathrooms": "Vonios",
+    "floors": "Aukštai",
     "area": "Plotas (m²)",
     "priceRange": "Kainos diapazonas",
     "modern": "Modernus",
@@ -52,6 +65,16 @@
     "2000to3000": "2000€ - 3000€",
     "3000to4000": "3000€ - 4000€",
     "over4000": "Daugiau nei 4000€"
+  },
+  "liked": {
+    "title": "Patikę Projektai",
+    "empty": "Dar nėra patikusių projektų",
+    "emptyDescription": "Pradėkite naršyti mūsų namų projektus ir pažymėkite tuos, kurie jus domina, kad juos pamatytumėte čia.",
+    "browseProjects": "Naršyti Projektus",
+    "projects": "projektai",
+    "clearAll": "Išvalyti visus",
+    "remove": "Pašalinti",
+    "add": "Patinka Projektas"
   },
   "cart": {
     "title": "Pirkinių Krepšelis",

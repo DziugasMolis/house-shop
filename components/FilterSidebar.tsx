@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { useFilter } from '@/contexts/FilterContext'
 
 const filters = [
   {
@@ -36,6 +37,15 @@ const filters = [
     ],
   },
   {
+    id: 'floors',
+    name: 'Floors',
+    options: [
+      { value: '1', label: '1' },
+      { value: '2', label: '2' },
+      { value: '3', label: '3+' },
+    ],
+  },
+  {
     id: 'area',
     name: 'Area (m²)',
     options: [
@@ -48,24 +58,44 @@ const filters = [
 ]
 
 export default function FilterSidebar() {
-  const [selectedFilters, setSelectedFilters] = useState<Record<string, string[]>>({})
+  const [openFilters, setOpenFilters] = useState<Record<string, boolean>>({})
+  const [isMobile, setIsMobile] = useState(false)
   const { t } = useLanguage()
+  const { selectedFilters, updateFilter, clearAllFilters } = useFilter()
+
+  // Initialize filter states based on screen size
+  useEffect(() => {
+    const checkScreenSize = () => {
+      const mobile = window.innerWidth < 1024 // lg breakpoint
+      setIsMobile(mobile)
+      
+      // Set initial filter states based on screen size
+      const initialStates = filters.reduce((acc, filter) => {
+        acc[filter.id] = !mobile // true for desktop, false for mobile
+        return acc
+      }, {} as Record<string, boolean>)
+      
+      setOpenFilters(initialStates)
+    }
+
+    // Check on mount
+    checkScreenSize()
+
+    // Add resize listener
+    window.addEventListener('resize', checkScreenSize)
+    
+    return () => window.removeEventListener('resize', checkScreenSize)
+  }, [])
 
   const handleFilterChange = (filterId: string, value: string, checked: boolean) => {
-    setSelectedFilters(prev => {
-      const currentValues = prev[filterId] || []
-      if (checked) {
-        return {
-          ...prev,
-          [filterId]: [...currentValues, value]
-        }
-      } else {
-        return {
-          ...prev,
-          [filterId]: currentValues.filter(v => v !== value)
-        }
-      }
-    })
+    updateFilter(filterId as keyof typeof selectedFilters, value, checked)
+  }
+
+  const toggleFilter = (filterId: string) => {
+    setOpenFilters(prev => ({
+      ...prev,
+      [filterId]: !prev[filterId]
+    }))
   }
 
   return (
@@ -78,12 +108,50 @@ export default function FilterSidebar() {
 
       <div className="border-b border-gray-200 py-6">
         {filters.map((filter) => (
-          <div key={filter.id} className="py-6">
-            <h3 className="flow-root -my-3">
-              <span className="font-medium text-gray-900">{filter.name}</span>
-            </h3>
-            <div className="pt-6">
-              <div className="space-y-4">
+          <div key={filter.id} className="py-6 border-b border-gray-100 last:border-b-0">
+            <button
+              onClick={() => toggleFilter(filter.id)}
+              className="flex items-center justify-between w-full text-left focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-md p-2 -m-2"
+            >
+              <h3 className="font-medium text-gray-900">{filter.name}</h3>
+              <div className="flex items-center">
+                {/* Selected count badge */}
+                {selectedFilters[filter.id as keyof typeof selectedFilters]?.length > 0 && (
+                  <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary-100 text-primary-800 mr-2">
+                    {selectedFilters[filter.id as keyof typeof selectedFilters].length}
+                  </span>
+                )}
+                {/* Hamburger icon */}
+                <div className="relative w-6 h-6">
+                  <span 
+                    className={`absolute inset-0 transform transition-transform duration-200 ease-in-out ${
+                      openFilters[filter.id] ? 'rotate-45 translate-y-0' : '-translate-y-1'
+                    }`}
+                  >
+                    <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                    </svg>
+                  </span>
+                  <span 
+                    className={`absolute inset-0 transform transition-transform duration-200 ease-in-out ${
+                      openFilters[filter.id] ? 'rotate-45 translate-y-0' : 'translate-y-1'
+                    }`}
+                  >
+                    <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </button>
+            
+            {/* Collapsible content */}
+            <div 
+              className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                openFilters[filter.id] ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+              }`}
+            >
+              <div className="pt-4 space-y-3">
                 {filter.options.map((option) => (
                   <div key={option.value} className="flex items-center">
                     <input
@@ -91,13 +159,13 @@ export default function FilterSidebar() {
                       name={`${filter.id}[]`}
                       value={option.value}
                       type="checkbox"
-                      checked={selectedFilters[filter.id]?.includes(option.value) || false}
+                      checked={selectedFilters[filter.id as keyof typeof selectedFilters]?.includes(option.value) || false}
                       onChange={(e) => handleFilterChange(filter.id, option.value, e.target.checked)}
                       className="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
                     />
                     <label
                       htmlFor={`filter-${filter.id}-${option.value}`}
-                      className="ml-3 text-sm text-gray-600"
+                      className="ml-3 text-sm text-gray-600 cursor-pointer hover:text-gray-900 transition-colors"
                     >
                       {option.label}
                     </label>
@@ -112,8 +180,8 @@ export default function FilterSidebar() {
       <div className="py-6">
         <button
           type="button"
-          onClick={() => setSelectedFilters({})}
-          className="text-sm font-medium text-primary-600 hover:text-primary-500"
+          onClick={clearAllFilters}
+          className="text-sm font-medium text-primary-600 hover:text-primary-500 transition-colors"
         >
           {t('filters.clearAll')}
         </button>
