@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
+import MaterialInput from './MaterialInput'
 
 export default function ContactSection() {
   const { t } = useLanguage()
@@ -9,7 +10,13 @@ export default function ContactSection() {
     name: '',
     email: '',
     phone: '',
-    message: '',
+    message: ''
+  })
+  const [fieldErrors, setFieldErrors] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
@@ -17,8 +24,7 @@ export default function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-      setSubmitStatus('error')
+    if (!validateForm()) {
       return
     }
 
@@ -26,11 +32,12 @@ export default function ContactSection() {
     setSubmitStatus('idle')
 
     try {
-      // Using Formspree - same endpoint as product inquiry form
-      const formEndpoint = 'https://formspree.io/f/xnnvbzee'
+      // Using Formspree - a free service for sending emails from forms
+      // You need to create a form at https://formspree.io/ and get your form endpoint
+      const formEndpoint = 'https://formspree.io/f/xnnvbzee' // Replace with your actual Formspree form endpoint
       
       const formDataToSend = new FormData()
-      formDataToSend.append('email', 'svilinuks@gmail.com') // Recipient email
+      formDataToSend.append('email', 'svilinuks@gmail.com') // This will be the recipient
       formDataToSend.append('subject', 'Contact Form Submission - House Shop')
       formDataToSend.append('message', `
 Contact Form Submission
@@ -58,6 +65,7 @@ This message was sent from the House Shop contact form.
       if (response.ok) {
         setSubmitStatus('success')
         setFormData({ name: '', email: '', phone: '', message: '' })
+        setFieldErrors({ name: '', email: '', phone: '', message: '' })
         setTimeout(() => {
           setSubmitStatus('idle')
         }, 3000)
@@ -72,11 +80,59 @@ This message was sent from the House Shop contact form.
     }
   }
 
+  const validateField = (name: string, value: string): string => {
+    switch (name) {
+      case 'name':
+        return value.trim() ? '' : t('contact.errors.nameRequired')
+      case 'email':
+        if (value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          return t('contact.errors.emailInvalid')
+        }
+        return ''
+      case 'message':
+        return value.trim() ? '' : t('contact.errors.messageRequired')
+      case 'phone':
+        if (value && !/^[\+]?[1-9][\d]{0,15}$/.test(value.replace(/\s/g, ''))) {
+          return t('contact.errors.phoneInvalid')
+        }
+        return ''
+      default:
+        return ''
+    }
+  }
+
+  const validateForm = (): boolean => {
+    const errors = {
+      name: validateField('name', formData.name),
+      email: validateField('email', formData.email),
+      phone: validateField('phone', formData.phone),
+      message: validateField('message', formData.message)
+    }
+
+    // Check if at least one contact method is provided
+    if (!formData.email.trim() && !formData.phone.trim()) {
+      errors.email = t('contact.errors.contactRequired')
+      errors.phone = t('contact.errors.contactRequired')
+    }
+
+    setFieldErrors(errors)
+    const isValid = !Object.values(errors).some(error => error !== '')
+    return isValid
+  }
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+    // Clear field error when user starts typing
+    if (fieldErrors[name as keyof typeof fieldErrors]) {
+      setFieldErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }))
+    }
     // Clear error status when user starts typing
     if (submitStatus === 'error') {
       setSubmitStatus('idle')
@@ -128,77 +184,60 @@ This message was sent from the House Shop contact form.
                   </svg>
                 </dt>
                 <dd>
-                  <a className="hover:text-gray-900" href="mailto:svilinuks@gmail.com">
-                    svilinuks@gmail.com
+                  <a className="hover:text-gray-900" href="mailto:email@gmail.com">
+                  email@gmail.com
                   </a>
                 </dd>
               </div>
             </dl>
           </div>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
-                {t('contact.form.name')} *
-              </label>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
-                />
-              </div>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6" noValidate>
+            <MaterialInput
+              id="name"
+              name="name"
+              type="text"
+              value={formData.name}
+              onChange={handleChange}
+              label={t('contact.form.name')}
+              required={true}
+              error={fieldErrors.name}
+            />
+
+            <MaterialInput
+              id="email"
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleChange}
+              label={t('contact.form.email')}
+              error={fieldErrors.email}
+            />
+
+            <MaterialInput
+              id="phone"
+              name="phone"
+              type="tel"
+              value={formData.phone}
+              onChange={handleChange}
+              label={t('contact.form.phone')}
+              error={fieldErrors.phone}
+            />
+
+            <div className="text-xs text-gray-500 bg-blue-50 p-2 rounded">
+              {t('inquiry.contactNote')}
             </div>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                {t('contact.form.email')} *
-              </label>
-              <div className="mt-2">
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-            <div>
-              <label htmlFor="phone" className="block text-sm font-medium leading-6 text-gray-900">
-                {t('contact.form.phone')}
-              </label>
-              <div className="mt-2">
-                <input
-                  type="tel"
-                  name="phone"
-                  id="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium leading-6 text-gray-900">
-                {t('contact.form.message')} *
-              </label>
-              <div className="mt-2">
-                <textarea
-                  name="message"
-                  id="message"
-                  rows={4}
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
+
+            <MaterialInput
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              label={t('contact.form.message')}
+              required={true}
+              multiline={true}
+              rows={4}
+              error={fieldErrors.message}
+            />
 
             {submitStatus === 'success' && (
               <div className="rounded-md bg-green-50 p-4">

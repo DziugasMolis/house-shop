@@ -6,10 +6,14 @@
     "blog": "Tinklaraštis",
     "contact": "Kontaktai"
   },
+  "breadcrumb": {
+    "home": "Pradžia",
+    "shop": "Parduotuvė"
+  },
   "hero": {
     "badge": "Kas naujo",
     "badgeText": "Ką tik išleista v1.0",
-    "title": "Sukurkite Savo Svetimąjį Namą su Premium Namų Projektais",
+    "title": "Išsirinkite savo namo projektą",
     "description": "Atraskite mūsų kruopščiai suprojektuotų namų projektų kolekciją. Nuo modernių minimalistinių namų iki klasikinių šeimos rezidencijų, raskite tobulą planą savo svajonių namui. Kiekvienas projektas turi detales planus, 3D vizualizacijas ir ekspertų vadovavimą.",
     "browseButton": "Naršyti Projektus",
     "learnMore": "Sužinoti daugiau"
@@ -33,17 +37,34 @@
     "rating": "Įvertinimas",
     "reviews": "atsiliepimai",
     "specifications": "Specifikacijos",
-    "features": "Funkcijos ir Patogumai",
-    "aboutDesign": "Apie Šį Dizainą",
+    "featuresLabel": "Funkcijos ir Patogumai",
     "totalArea": "Bendras Plotas",
     "floorPlan": "Planas",
     "garage": "Garažas",
     "yearBuilt": "Statybos Metai",
-    "inStock": "Yra sandėlyje",
-    "freeShipping": "Nemokamas pristatymas",
     "noProductsFound": "Produktų nerasta",
     "adjustFilters": "Pabandykite pakeisti filtrus, kad pamatytumėte daugiau rezultatų.",
-    "inquiry": "Užklausti Informacijos"
+    "inquiry": "Pildyti užklausą",
+    "specLabels": {
+      "totalArea": "Bendras Plotas",
+      "bedrooms": "Miegamieji",
+      "bathrooms": "Vonios",
+      "floors": "Aukštai",
+      "garage": "Garažas",
+      "yearBuilt": "Statybos Metai"
+    },
+    "features": {
+      "openFloorPlan": "Atviras planas",
+      "energyEfficient": "Energijos taupymas",
+      "smartHomeReady": "Išmanusis namas",
+      "hardwoodFloors": "Medinės grindys",
+      "stainlessSteelAppliances": "Nerūdijančio plieno technika",
+      "walkInClosets": "Spintos miegamajame",
+      "fireplace": "Židinys",
+      "deckPatio": "Terasa/Patio",
+      "centralAirConditioning": "Centrinis oro kondicionavimas",
+      "securitySystem": "Apsaugos sistema"
+    }
   },
   "shop": {
     "title": "Namų Projektai",
@@ -58,14 +79,18 @@
     "floors": "Aukštai",
     "area": "Plotas (m²)",
     "priceRange": "Kainos diapazonas",
-    "modern": "Modernus",
-    "traditional": "Tradicinis",
-    "luxury": "Prabangus",
-    "cottage": "Kotedžas",
+    "brick": "Plytų",
+    "frame": "Karkasinis",
     "under2000": "Mažiau nei 2000€",
     "2000to3000": "2000€ - 3000€",
     "3000to4000": "3000€ - 4000€",
-    "over4000": "Daugiau nei 4000€"
+    "over4000": "Daugiau nei 4000€",
+    "areaOptions": {
+      "0-100": "Mažiau nei 100 m²",
+      "100-150": "100 - 150 m²",
+      "150-200": "150 - 200 m²",
+      "200+": "Daugiau nei 200 m²"
+    }
   },
   "remembered": {
     "title": "Įsiminti projektai",
@@ -79,7 +104,7 @@
   },
   "inquiry": {
     "title": "Užklausti Informacijos",
-    "name": "Pilnas Vardas",
+    "name": "Vardas",
     "email": "El. Pašto Adresas",
     "phone": "Telefono Numeris",
     "address": "Adresas",
@@ -93,7 +118,9 @@
     "contactNote": "Prašome pateikti el. pašto adresą arba telefono numerį, kad galėtume su jumis susisiekti.",
     "nameRequired": "Prašome įvesti savo pilną vardą.",
     "addressRequired": "Prašome įvesti savo adresą.",
-    "contactRequired": "Prašome pateikti el. pašto adresą arba telefono numerį."
+    "contactRequired": "Prašome pateikti el. pašto adresą arba telefono numerį.",
+    "emailInvalid": "Prašome įvesti teisingą el. pašto adresą.",
+    "phoneInvalid": "Prašome įvesti teisingą telefono numerį."
   },
   "cart": {
     "title": "Pirkinių Krepšelis",
@@ -148,6 +175,14 @@
       "phone": "Telefono numeris",
       "message": "Žinutė",
       "submit": "Siųsti žinutę"
+    },
+    "errors": {
+      "nameRequired": "Vardas yra privalomas",
+      "emailRequired": "El. paštas yra privalomas",
+      "emailInvalid": "Prašome įvesti teisingą el. pašto adresą",
+      "messageRequired": "Žinutė yra privaloma",
+      "phoneInvalid": "Prašome įvesti teisingą telefono numerį",
+      "contactRequired": "Prašome pateikti el. pašto adresą arba telefono numerį"
     }
   },
   "blog": {
@@ -163,5 +198,31 @@
     "title": "Namų Parduotuvė - Premium Namų Projektai",
     "description": "Atraskite gražius ir inovatyvius namų projektus. Nuo modernių dizainų iki klasikinės architektūros, raskite savo tobulą namo planą.",
     "keywords": "namų projektai, namų dizainas, architektūra, namų planai, statyba"
+  },
+  "productTranslations": {
+    "1": {
+      "name": "Moderni Minimalistinė Vila",
+      "description": "Šiuolaikinė 3 miegamųjų vila su atvira planu ir tvariais bruožais."
+    },
+    "2": {
+      "name": "Klasikinis Šeimos Namas",
+      "description": "Tradicinis 4 miegamųjų šeimos namas su erdžia virtuve ir kiemu."
+    },
+    "3": {
+      "name": "Prabangaus Penthauso Dizainas",
+      "description": "Premium penthausas su panoraminiais vaizdais ir aukštos klasės apdaila."
+    },
+    "4": {
+      "name": "Jaukus Kotedžas",
+      "description": "Žavingas 2 miegamųjų kotedžas, puikiai tinkantis mažoms šeimoms ar poroms."
+    },
+    "5": {
+      "name": "Skandinaviško Stiliaus Namas",
+      "description": "Švarus ir funkcionalus dizainas su natūraliomis medžiagomis ir daug šviesos."
+    },
+    "6": {
+      "name": "Šiuolaikinis Miesto Namas",
+      "description": "Modernus miesto būstas su išmaniojo namo funkcijomis ir stogo sodu."
+    }
   }
 } 

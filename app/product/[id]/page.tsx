@@ -16,6 +16,7 @@ import {
 import { useRememberedProjectsStore } from '@/store/rememberedProjectsStore'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { useFilter } from '@/contexts/FilterContext'
+import { useProductTranslation } from '@/utils/productTranslations'
 import ProductInquiryForm from '@/components/ProductInquiryForm'
 
 export default function ProductDetailPage() {
@@ -26,6 +27,7 @@ export default function ProductDetailPage() {
   const { addToRemembered, removeFromRemembered, isRemembered } = useRememberedProjectsStore()
   const { t } = useLanguage()
   const { allProducts } = useFilter()
+  const productTranslation = useProductTranslation(productId)
 
   const product = allProducts.find(p => p.id === productId)
 
@@ -39,10 +41,10 @@ export default function ProductDetailPage() {
     } else {
       addToRemembered({
         id: product.id,
-        name: product.name,
+        name: productTranslation.name,
         price: product.price,
         image: product.image,
-        description: product.description,
+        description: productTranslation.description,
       })
     }
   }
@@ -57,26 +59,26 @@ export default function ProductDetailPage() {
 
   // Mock specifications
   const specifications = [
-    { label: 'Total Area', value: `${product.area} m²`, icon: Square3Stack3DIcon },
-    { label: 'Bedrooms', value: product.bedrooms.toString(), icon: HomeIcon },
-    { label: 'Bathrooms', value: product.bathrooms.toString(), icon: UserGroupIcon },
-    { label: 'Floors', value: product.floors.toString(), icon: Square3Stack3DIcon },
-    { label: 'Garage', value: '2 Cars', icon: HomeIcon },
-    { label: 'Year Built', value: '2024', icon: CalendarIcon },
+    { label: t('products.specLabels.totalArea'), value: `${product.area} m²`, icon: Square3Stack3DIcon },
+    { label: t('products.specLabels.bedrooms'), value: product.bedrooms.toString(), icon: HomeIcon },
+    { label: t('products.specLabels.bathrooms'), value: product.bathrooms.toString(), icon: UserGroupIcon },
+    { label: t('products.specLabels.floors'), value: product.floors.toString(), icon: Square3Stack3DIcon },
+    { label: t('products.specLabels.garage'), value: '2 Cars', icon: HomeIcon },
+    { label: t('products.specLabels.yearBuilt'), value: '2024', icon: CalendarIcon },
   ]
 
   // Mock features
   const features = [
-    'Open floor plan',
-    'Energy efficient',
-    'Smart home ready',
-    'Hardwood floors',
-    'Stainless steel appliances',
-    'Walk-in closets',
-    'Fireplace',
-    'Deck/Patio',
-    'Central air conditioning',
-    'Security system',
+    t('products.features.openFloorPlan'),
+    t('products.features.energyEfficient'),
+    t('products.features.smartHomeReady'),
+    t('products.features.hardwoodFloors'),
+    t('products.features.stainlessSteelAppliances'),
+    t('products.features.walkInClosets'),
+    t('products.features.fireplace'),
+    t('products.features.deckPatio'),
+    t('products.features.centralAirConditioning'),
+    t('products.features.securitySystem'),
   ]
 
   return (
@@ -87,21 +89,21 @@ export default function ProductDetailPage() {
           <ol className="flex items-center space-x-4">
             <li>
               <a href="/" className="text-gray-500 hover:text-gray-700">
-                Home
+                {t('breadcrumb.home')}
               </a>
             </li>
             <li>
               <div className="flex items-center">
                 <span className="text-gray-400">/</span>
                 <a href="/shop" className="ml-4 text-gray-500 hover:text-gray-700">
-                  Shop
+                  {t('breadcrumb.shop')}
                 </a>
               </div>
             </li>
             <li>
               <div className="flex items-center">
                 <span className="text-gray-400">/</span>
-                <span className="ml-4 text-gray-900">{product.name}</span>
+                <span className="ml-4 text-gray-900">{productTranslation.name}</span>
               </div>
             </li>
           </ol>
@@ -113,7 +115,7 @@ export default function ProductDetailPage() {
             <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 mb-4">
               <img
                 src={productImages[selectedImage]}
-                alt={product.name}
+                alt={productTranslation.name}
                 className="h-full w-full object-cover object-center"
               />
               <button
@@ -140,7 +142,7 @@ export default function ProductDetailPage() {
                 >
                   <img
                     src={image}
-                    alt={`${product.name} view ${index + 1}`}
+                    alt={`${productTranslation.name} view ${index + 1}`}
                     className="h-full w-full object-cover object-center"
                   />
                 </button>
@@ -152,7 +154,7 @@ export default function ProductDetailPage() {
           <div className="lg:col-span-1">
             <div className="lg:pl-8">
               <h1 className="text-3xl font-bold tracking-tight text-gray-900 mb-4">
-                {product.name}
+                {productTranslation.name}
               </h1>
               
               <div className="flex items-center mb-4">
@@ -175,7 +177,7 @@ export default function ProductDetailPage() {
               </p>
 
               <p className="text-gray-700 mb-6 leading-relaxed">
-                {product.description}
+                {productTranslation.description}
               </p>
 
               {/* Key Specifications */}
@@ -213,16 +215,25 @@ export default function ProductDetailPage() {
                 </button>
               </div>
 
-              {/* Quick Info */}
+              {/* Contact Information */}
               <div className="border-t border-gray-200 pt-6">
-                <div className="flex items-center justify-between text-sm">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('contact.getInTouch')}</h3>
+                <div className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2" />
-                    <span className="text-gray-600">{t('products.inStock')}</span>
+                    <svg className="h-5 w-5 text-gray-400 mr-3" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                    </svg>
+                    <a className="text-gray-600 hover:text-gray-900" href="tel:+1 (555) 234-5678">
+                      +1 (555) 234-5678
+                    </a>
                   </div>
                   <div className="flex items-center">
-                    <MapPinIcon className="h-5 w-5 text-gray-400 mr-2" />
-                    <span className="text-gray-600">{t('products.freeShipping')}</span>
+                    <svg className="h-5 w-5 text-gray-400 mr-3" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                    </svg>
+                    <a className="text-gray-600 hover:text-gray-900" href="mailto:email@gmail.com">
+                      email@gmail.com
+                    </a>
                   </div>
                 </div>
               </div>
@@ -251,7 +262,7 @@ export default function ProductDetailPage() {
 
             {/* Features */}
             <div className="lg:col-span-2">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">{t('products.features')}</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">{t('products.featuresLabel')}</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {features.map((feature) => (
                   <div key={feature} className="flex items-center">
@@ -261,28 +272,6 @@ export default function ProductDetailPage() {
                 ))}
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Description */}
-        <div className="mt-16 border-t border-gray-200 pt-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">{t('products.aboutDesign')}</h2>
-          <div className="prose prose-gray max-w-none">
-            <p className="text-gray-700 leading-relaxed mb-4">
-              This meticulously designed house project combines modern aesthetics with practical functionality. 
-              The open floor plan creates a seamless flow between living spaces, while large windows maximize 
-              natural light throughout the home.
-            </p>
-            <p className="text-gray-700 leading-relaxed mb-4">
-              The kitchen features premium appliances and ample storage, perfect for both everyday cooking and 
-              entertaining. The master suite includes a spacious walk-in closet and an en-suite bathroom with 
-              modern fixtures.
-            </p>
-            <p className="text-gray-700 leading-relaxed">
-              Built with energy efficiency in mind, this design includes high-quality insulation, energy-efficient 
-              windows, and smart home technology integration. The exterior combines durable materials with 
-              contemporary styling for a timeless appeal.
-            </p>
           </div>
         </div>
       </div>

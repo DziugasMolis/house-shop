@@ -6,6 +6,10 @@
     "blog": "Blog",
     "contact": "Contact"
   },
+  "breadcrumb": {
+    "home": "Home",
+    "shop": "Shop"
+  },
   "hero": {
     "badge": "What's new",
     "badgeText": "Just shipped v1.0",
@@ -33,17 +37,34 @@
     "rating": "Rating",
     "reviews": "reviews",
     "specifications": "Specifications",
-    "features": "Features & Amenities",
-    "aboutDesign": "About This Design",
+    "featuresLabel": "Features & Amenities",
     "totalArea": "Total Area",
     "floorPlan": "Floor Plan",
     "garage": "Garage",
     "yearBuilt": "Year Built",
-    "inStock": "In stock",
-    "freeShipping": "Free shipping",
     "noProductsFound": "No products found",
     "adjustFilters": "Try adjusting your filters to see more results.",
-    "inquiry": "Request Information"
+    "inquiry": "Request Information",
+    "specLabels": {
+      "totalArea": "Total Area",
+      "bedrooms": "Bedrooms",
+      "bathrooms": "Bathrooms",
+      "floors": "Floors",
+      "garage": "Garage",
+      "yearBuilt": "Year Built"
+    },
+    "features": {
+      "openFloorPlan": "Open floor plan",
+      "energyEfficient": "Energy efficient",
+      "smartHomeReady": "Smart home ready",
+      "hardwoodFloors": "Hardwood floors",
+      "stainlessSteelAppliances": "Stainless steel appliances",
+      "walkInClosets": "Walk-in closets",
+      "fireplace": "Fireplace",
+      "deckPatio": "Deck/Patio",
+      "centralAirConditioning": "Central air conditioning",
+      "securitySystem": "Security system"
+    }
   },
   "shop": {
     "title": "House Projects",
@@ -58,14 +79,18 @@
     "floors": "Floors",
     "area": "Area (m²)",
     "priceRange": "Price Range",
-    "modern": "Modern",
-    "traditional": "Traditional",
-    "luxury": "Luxury",
-    "cottage": "Cottage",
+    "brick": "Brick",
+    "frame": "Frame",
     "under2000": "Under $2,000",
     "2000to3000": "$2,000 - $3,000",
     "3000to4000": "$3,000 - $4,000",
-    "over4000": "Over $4,000"
+    "over4000": "Over $4,000",
+    "areaOptions": {
+      "0-100": "Under 100 m²",
+      "100-150": "100 - 150 m²",
+      "150-200": "150 - 200 m²",
+      "200+": "Over 200 m²"
+    }
   },
   "remembered": {
     "title": "Remembered Projects",
@@ -93,7 +118,9 @@
     "contactNote": "Please provide either an email address or phone number so we can contact you.",
     "nameRequired": "Please enter your full name.",
     "addressRequired": "Please enter your address.",
-    "contactRequired": "Please provide either an email address or phone number."
+    "contactRequired": "Please provide either an email address or phone number.",
+    "emailInvalid": "Please enter a valid email address.",
+    "phoneInvalid": "Please enter a valid phone number."
   },
   "cart": {
     "title": "Shopping Cart",
@@ -148,6 +175,14 @@
       "phone": "Phone number",
       "message": "Message",
       "submit": "Send message"
+    },
+    "errors": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email address",
+      "messageRequired": "Message is required",
+      "phoneInvalid": "Please enter a valid phone number",
+      "contactRequired": "Please provide either an email address or phone number"
     }
   },
   "blog": {
@@ -163,5 +198,31 @@
     "title": "House Shop - Premium House Projects",
     "description": "Discover beautiful and innovative house projects. From modern designs to classic architecture, find your perfect home blueprint.",
     "keywords": "house projects, home design, architecture, house plans, construction"
+  },
+  "productTranslations": {
+    "1": {
+      "name": "Modern Minimalist Villa",
+      "description": "Contemporary 3-bedroom villa with open floor plan and sustainable features."
+    },
+    "2": {
+      "name": "Classic Family Home",
+      "description": "Traditional 4-bedroom family home with spacious kitchen and backyard."
+    },
+    "3": {
+      "name": "Luxury Penthouse Design",
+      "description": "Premium penthouse with panoramic views and high-end finishes."
+    },
+    "4": {
+      "name": "Cozy Cottage",
+      "description": "Charming 2-bedroom cottage perfect for small families or couples."
+    },
+    "5": {
+      "name": "Scandinavian Style House",
+      "description": "Clean and functional design with natural materials and plenty of light."
+    },
+    "6": {
+      "name": "Contemporary Urban Home",
+      "description": "Modern urban dwelling with smart home features and rooftop garden."
+    }
   }
 } 

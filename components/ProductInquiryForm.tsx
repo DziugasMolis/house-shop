@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { useProductTranslation } from '@/utils/productTranslations'
+import MaterialInput from './MaterialInput'
 
 interface ProductInquiryFormProps {
   isOpen: boolean
@@ -18,16 +20,21 @@ interface ProductInquiryFormProps {
 
 export default function ProductInquiryForm({ isOpen, onClose, product }: ProductInquiryFormProps) {
   const { t } = useLanguage()
+  const productTranslation = useProductTranslation(product.id)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    address: '',
+    message: ''
+  })
+  const [fieldErrors, setFieldErrors] = useState({
+    name: '',
+    email: '',
+    phone: '',
     message: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
-  const [validationError, setValidationError] = useState('')
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -35,26 +42,54 @@ export default function ProductInquiryForm({ isOpen, onClose, product }: Product
       ...prev,
       [name]: value
     }))
-    // Clear validation error when user starts typing
-    if (validationError) {
-      setValidationError('')
+    // Clear field error when user starts typing
+    if (fieldErrors[name as keyof typeof fieldErrors]) {
+      setFieldErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }))
     }
   }
 
-  const validateForm = () => {
-    if (!formData.name.trim()) {
-      setValidationError(t('inquiry.nameRequired'))
-      return false
+  const validateField = (name: string, value: string): string => {
+    switch (name) {
+      case 'name':
+        return value.trim() ? '' : t('inquiry.nameRequired')
+      case 'email':
+        if (value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          return t('inquiry.emailInvalid')
+        }
+        return ''
+      case 'phone':
+        if (value && !/^[\+]?[1-9][\d]{0,15}$/.test(value.replace(/\s/g, ''))) {
+          return t('inquiry.phoneInvalid')
+        }
+        return ''
+      default:
+        return ''
     }
-    if (!formData.address.trim()) {
-      setValidationError(t('inquiry.addressRequired'))
-      return false
+  }
+
+  const validateForm = (): boolean => {
+    const errors = {
+      name: validateField('name', formData.name),
+      email: validateField('email', formData.email),
+      phone: validateField('phone', formData.phone),
+      message: ''
     }
+
+    // Check if at least one contact method is provided
     if (!formData.email.trim() && !formData.phone.trim()) {
-      setValidationError(t('inquiry.contactRequired'))
-      return false
+      if (!formData.email.trim()) {
+        errors.email = t('inquiry.contactRequired')
+      }
+      if (!formData.phone.trim()) {
+        errors.phone = t('inquiry.contactRequired')
+      }
     }
-    return true
+
+    setFieldErrors(errors)
+    return !Object.values(errors).some(error => error !== '')
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -66,7 +101,6 @@ export default function ProductInquiryForm({ isOpen, onClose, product }: Product
 
     setIsSubmitting(true)
     setSubmitStatus('idle')
-    setValidationError('')
 
     try {
       // Using Formspree - a free service for sending emails from forms
@@ -75,21 +109,20 @@ export default function ProductInquiryForm({ isOpen, onClose, product }: Product
       
       const formDataToSend = new FormData()
       formDataToSend.append('email', 'svilinuks@gmail.com') // This will be the recipient
-      formDataToSend.append('subject', `Product Inquiry: ${product.name}`)
+      formDataToSend.append('subject', `Product Inquiry: ${productTranslation.name}`)
       formDataToSend.append('message', `
 Product Inquiry Form Submission
 
 Product Details:
-- Name: ${product.name}
+- Name: ${productTranslation.name}
 - Price: $${product.price}
 - ID: ${product.id}
-- Description: ${product.description}
+- Description: ${productTranslation.description}
 
 Customer Information:
 - Name: ${formData.name}
 - Email: ${formData.email || 'Not provided'}
 - Phone: ${formData.phone || 'Not provided'}
-- Address: ${formData.address}
 
 Message:
 ${formData.message || 'No additional message provided'}
@@ -110,9 +143,9 @@ This inquiry was sent from the House Shop website.
         setSubmitStatus('success')
         setTimeout(() => {
           onClose()
-          setFormData({ name: '', email: '', phone: '', address: '', message: '' })
+          setFormData({ name: '', email: '', phone: '', message: '' })
+          setFieldErrors({ name: '', email: '', phone: '', message: '' })
           setSubmitStatus('idle')
-          setValidationError('')
         }, 2000)
       } else {
         throw new Error('Failed to send email')
@@ -151,93 +184,57 @@ This inquiry was sent from the House Shop website.
               </h3>
               
               <div className="mb-4 p-3 bg-gray-50 rounded-lg">
-                <h4 className="font-medium text-gray-900">{product.name}</h4>
+                <h4 className="font-medium text-gray-900">{productTranslation.name}</h4>
                 <p className="text-sm text-gray-600">${product.price}</p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                    {t('inquiry.name')} *
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
-                  />
-                </div>
+              <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+                <MaterialInput
+                  id="name"
+                  name="name"
+                  type="text"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  label={t('inquiry.name')}
+                  required={true}
+                  error={fieldErrors.name}
+                />
 
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                    {t('inquiry.email')}
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
-                  />
-                </div>
+                <MaterialInput
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  label={t('inquiry.email')}
+                  error={fieldErrors.email}
+                />
 
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-                    {t('inquiry.phone')}
-                  </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    id="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
-                  />
-                </div>
+                <MaterialInput
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  label={t('inquiry.phone')}
+                  error={fieldErrors.phone}
+                />
 
                 <div className="text-xs text-gray-500 bg-blue-50 p-2 rounded">
                   {t('inquiry.contactNote')}
                 </div>
 
-                <div>
-                  <label htmlFor="address" className="block text-sm font-medium text-gray-700">
-                    {t('inquiry.address')} *
-                  </label>
-                  <input
-                    type="text"
-                    name="address"
-                    id="address"
-                    value={formData.address}
-                    onChange={handleInputChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                    {t('inquiry.message')}
-                  </label>
-                  <textarea
-                    name="message"
-                    id="message"
-                    rows={4}
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    placeholder={t('inquiry.messagePlaceholder')}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
-                  />
-                </div>
-
-                {validationError && (
-                  <div className="rounded-md bg-red-50 p-4">
-                    <div className="text-sm text-red-700">
-                      {validationError}
-                    </div>
-                  </div>
-                )}
+                <MaterialInput
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  label={t('inquiry.message')}
+                  placeholder={t('inquiry.messagePlaceholder')}
+                  multiline={true}
+                  rows={4}
+                  error={fieldErrors.message}
+                />
 
                 {submitStatus === 'success' && (
                   <div className="rounded-md bg-green-50 p-4">

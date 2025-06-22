@@ -9,11 +9,8 @@ const filters = [
     id: 'category',
     name: 'Category',
     options: [
-      { value: 'modern', label: 'Modern' },
-      { value: 'traditional', label: 'Traditional' },
-      { value: 'scandinavian', label: 'Scandinavian' },
-      { value: 'contemporary', label: 'Contemporary' },
-      { value: 'luxury', label: 'Luxury' },
+      { value: 'brick', label: 'Brick' },
+      { value: 'frame', label: 'Frame' },
     ],
   },
   {
@@ -49,10 +46,10 @@ const filters = [
     id: 'area',
     name: 'Area (m²)',
     options: [
-      { value: '0-150', label: 'Under 150 m²' },
+      { value: '0-100', label: 'Under 100 m²' },
+      { value: '100-150', label: '100 - 150 m²' },
       { value: '150-200', label: '150 - 200 m²' },
-      { value: '200-250', label: '200 - 250 m²' },
-      { value: '250+', label: 'Over 250 m²' },
+      { value: '200+', label: 'Over 200 m²' },
     ],
   },
 ]
@@ -60,11 +57,14 @@ const filters = [
 export default function FilterSidebar() {
   const [openFilters, setOpenFilters] = useState<Record<string, boolean>>({})
   const [isMobile, setIsMobile] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const { t } = useLanguage()
   const { selectedFilters, updateFilter, clearAllFilters } = useFilter()
 
   // Initialize filter states based on screen size
   useEffect(() => {
+    setMounted(true)
+    
     const checkScreenSize = () => {
       const mobile = window.innerWidth < 1024 // lg breakpoint
       setIsMobile(mobile)
@@ -87,6 +87,29 @@ export default function FilterSidebar() {
     return () => window.removeEventListener('resize', checkScreenSize)
   }, [])
 
+  // Don't render until mounted to prevent hydration mismatch
+  if (!mounted) {
+    return (
+      <div className="lg:col-span-1">
+        <div className="border-b border-gray-200 py-6">
+          <h3 className="flow-root -my-3">
+            <span className="font-medium text-gray-900">{t('filters.title')}</span>
+          </h3>
+        </div>
+        <div className="border-b border-gray-200">
+          {filters.map((filter) => (
+            <div key={filter.id} className="py-6 border-b border-gray-100 last:border-b-0">
+              <div className="flex items-center justify-between w-full text-left p-2 -m-2">
+                <h3 className="font-medium text-gray-900">{filter.id === 'category' ? t('filters.category') : t(`filters.${filter.id}`)}</h3>
+                <div className="w-6 h-6"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
   const handleFilterChange = (filterId: string, value: string, checked: boolean) => {
     updateFilter(filterId as keyof typeof selectedFilters, value, checked)
   }
@@ -98,16 +121,57 @@ export default function FilterSidebar() {
     }))
   }
 
+  // Get translated filter options
+  const getTranslatedFilters = () => {
+    return filters.map(filter => {
+      if (filter.id === 'category') {
+        return {
+          ...filter,
+          name: t('filters.category'),
+          options: filter.options.map(option => ({
+            ...option,
+            label: t(`filters.${option.value}`)
+          }))
+        }
+      }
+      if (filter.id === 'area') {
+        return {
+          ...filter,
+          name: t('filters.area'),
+          options: filter.options.map(option => ({
+            ...option,
+            label: t(`filters.areaOptions.${option.value}`)
+          }))
+        }
+      }
+      return {
+        ...filter,
+        name: t(`filters.${filter.id}`)
+      }
+    })
+  }
+
+  const translatedFilters = getTranslatedFilters()
+
   return (
     <div className="lg:col-span-1">
       <div className="border-b border-gray-200 py-6">
-        <h3 className="flow-root -my-3">
-          <span className="font-medium text-gray-900">{t('filters.title')}</span>
-        </h3>
+        <div className="flex items-center justify-between">
+          <h3 className="flow-root -my-3">
+            <span className="font-medium text-gray-900">{t('filters.title')}</span>
+          </h3>
+          <button
+            type="button"
+            onClick={clearAllFilters}
+            className="text-sm font-medium text-primary-600 hover:text-primary-500 transition-colors"
+          >
+            {t('filters.clearAll')}
+          </button>
+        </div>
       </div>
 
-      <div className="border-b border-gray-200 py-6">
-        {filters.map((filter) => (
+      <div className="border-b border-gray-200">
+        {translatedFilters.map((filter) => (
           <div key={filter.id} className="py-6 border-b border-gray-100 last:border-b-0">
             <button
               onClick={() => toggleFilter(filter.id)}
@@ -175,16 +239,6 @@ export default function FilterSidebar() {
             </div>
           </div>
         ))}
-      </div>
-
-      <div className="py-6">
-        <button
-          type="button"
-          onClick={clearAllFilters}
-          className="text-sm font-medium text-primary-600 hover:text-primary-500 transition-colors"
-        >
-          {t('filters.clearAll')}
-        </button>
       </div>
     </div>
   )

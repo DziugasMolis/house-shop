@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { useProductTranslation } from '@/utils/productTranslations'
 
 const featuredProducts = [
   {
@@ -49,17 +50,19 @@ export default function FeaturedProducts() {
           </p>
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          {featuredProducts.map((product) => (
-            <article key={product.id} className="flex flex-col items-start">
-              <div className="relative w-full">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
-                />
-                <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
-              </div>
-              <div className="max-w-xl">
+          {featuredProducts.map((product) => {
+            const productTranslation = useProductTranslation(product.id)
+            
+            return (
+              <article key={product.id} className="flex flex-col items-start">
+                <div className="relative w-full">
+                  <img
+                    src={product.image}
+                    alt={productTranslation.name}
+                    className="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+                  />
+                  <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
+                </div>
                 <div className="mt-8 flex items-center gap-x-4 text-xs">
                   <time dateTime="2020-03-16" className="text-gray-500">
                     {product.category}
@@ -72,7 +75,7 @@ export default function FeaturedProducts() {
                   <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
                     <Link href={`/shop/${product.id}`}>
                       <span className="absolute inset-0" />
-                      {product.name}
+                      {productTranslation.name}
                     </Link>
                   </h3>
                   <div className="mt-4 flex items-center gap-4 text-sm text-gray-600">
@@ -81,9 +84,9 @@ export default function FeaturedProducts() {
                     <span>{product.area}</span>
                   </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            )
+          })}
         </div>
         <div className="mt-16 text-center">
           <Link

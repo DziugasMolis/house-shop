@@ -1,6 +1,7 @@
 'use client'
 
-import { createContext, useContext, useState, ReactNode } from 'react'
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react'
+import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 
 export interface Product {
   id: string
@@ -49,7 +50,7 @@ const allProducts: Product[] = [
     bathrooms: 2,
     area: 223,
     floors: 2,
-    category: 'modern',
+    category: 'brick',
   },
   {
     id: '2',
@@ -63,7 +64,7 @@ const allProducts: Product[] = [
     bathrooms: 3,
     area: 297,
     floors: 2,
-    category: 'traditional',
+    category: 'brick',
   },
   {
     id: '3',
@@ -77,7 +78,7 @@ const allProducts: Product[] = [
     bathrooms: 3,
     area: 260,
     floors: 1,
-    category: 'luxury',
+    category: 'brick',
   },
   {
     id: '4',
@@ -91,7 +92,7 @@ const allProducts: Product[] = [
     bathrooms: 1,
     area: 130,
     floors: 1,
-    category: 'traditional',
+    category: 'frame',
   },
   {
     id: '5',
@@ -105,7 +106,7 @@ const allProducts: Product[] = [
     bathrooms: 2,
     area: 186,
     floors: 2,
-    category: 'scandinavian',
+    category: 'frame',
   },
   {
     id: '6',
@@ -119,11 +120,15 @@ const allProducts: Product[] = [
     bathrooms: 3,
     area: 242,
     floors: 3,
-    category: 'contemporary',
+    category: 'frame',
   },
 ]
 
 export function FilterProvider({ children }: { children: ReactNode }) {
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const pathname = usePathname()
+  
   const [selectedFilters, setSelectedFilters] = useState<FilterState>({
     category: [],
     bedrooms: [],
@@ -132,31 +137,66 @@ export function FilterProvider({ children }: { children: ReactNode }) {
     floors: [],
   })
 
+  // Parse URL parameters on mount and when URL changes
+  useEffect(() => {
+    const urlFilters: FilterState = {
+      category: searchParams.getAll('category'),
+      bedrooms: searchParams.getAll('bedrooms'),
+      bathrooms: searchParams.getAll('bathrooms'),
+      area: searchParams.getAll('area'),
+      floors: searchParams.getAll('floors'),
+    }
+    
+    setSelectedFilters(urlFilters)
+  }, [searchParams])
+
+  // Update URL when filters change
+  const updateURL = (filters: FilterState) => {
+    const params = new URLSearchParams()
+    
+    Object.entries(filters).forEach(([key, values]) => {
+      values.forEach((value: string) => {
+        params.append(key, value)
+      })
+    })
+    
+    const newURL = params.toString() ? `${pathname}?${params.toString()}` : pathname
+    router.replace(newURL, { scroll: false })
+  }
+
   const updateFilter = (filterType: keyof FilterState, value: string, checked: boolean) => {
     setSelectedFilters(prev => {
       const currentValues = prev[filterType] || []
+      let newValues: string[]
+      
       if (checked) {
-        return {
-          ...prev,
-          [filterType]: [...currentValues, value]
-        }
+        newValues = [...currentValues, value]
       } else {
-        return {
-          ...prev,
-          [filterType]: currentValues.filter(v => v !== value)
-        }
+        newValues = currentValues.filter(v => v !== value)
       }
+      
+      const newFilters = {
+        ...prev,
+        [filterType]: newValues
+      }
+      
+      // Update URL with new filters
+      updateURL(newFilters)
+      
+      return newFilters
     })
   }
 
   const clearAllFilters = () => {
-    setSelectedFilters({
+    const emptyFilters = {
       category: [],
       bedrooms: [],
       bathrooms: [],
       area: [],
       floors: [],
-    })
+    }
+    setSelectedFilters(emptyFilters)
+    updateURL(emptyFilters)
   }
 
   const filteredProducts = allProducts.filter(product => {
@@ -197,14 +237,14 @@ export function FilterProvider({ children }: { children: ReactNode }) {
     if (selectedFilters.area.length > 0) {
       const areaMatch = selectedFilters.area.some(filter => {
         switch (filter) {
-          case '0-150':
-            return product.area < 150
+          case '0-100':
+            return product.area < 100
+          case '100-150':
+            return product.area >= 100 && product.area < 150
           case '150-200':
             return product.area >= 150 && product.area < 200
-          case '200-250':
-            return product.area >= 200 && product.area < 250
-          case '250+':
-            return product.area >= 250
+          case '200+':
+            return product.area >= 200
           default:
             return false
         }
