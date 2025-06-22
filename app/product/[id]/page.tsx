@@ -1,20 +1,6 @@
 import { notFound } from 'next/navigation'
-import { StarIcon, HeartIcon } from '@heroicons/react/20/solid'
-import { HeartIcon as HeartOutlineIcon } from '@heroicons/react/24/outline'
-import { 
-  HomeIcon, 
-  UserGroupIcon, 
-  Square3Stack3DIcon,
-  MapPinIcon,
-  CalendarIcon,
-  CheckCircleIcon,
-  EnvelopeIcon
-} from '@heroicons/react/24/outline'
-import { useLanguage } from '@/contexts/LanguageContext'
-import { useFilter } from '@/contexts/FilterContext'
-import { useProductTranslation } from '@/utils/productTranslations'
-import ProductInquiryForm from '@/components/ProductInquiryForm'
 import ProductDetailClient from './ProductDetailClient'
+import { allProducts } from '@/data/products'
 
 // This function is required for static export
 export async function generateStaticParams() {
@@ -31,7 +17,6 @@ export async function generateStaticParams() {
 
 export default function ProductDetailPage({ params }: { params: { id: string } }) {
   const productId = params.id
-  const { allProducts } = useFilter()
   const product = allProducts.find(p => p.id === productId)
 
   if (!product) {

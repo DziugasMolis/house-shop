@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { StarIcon, HeartIcon } from '@heroicons/react/20/solid'
 import { HeartIcon as HeartOutlineIcon } from '@heroicons/react/24/outline'
 import { 
@@ -17,9 +18,100 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { useProductTranslation } from '@/utils/productTranslations'
 import ProductInquiryForm from '@/components/ProductInquiryForm'
 import { Product } from '@/contexts/FilterContext'
+import { allProducts } from '@/data/products'
 
 interface ProductDetailClientProps {
   product: Product
+}
+
+// Function to calculate similarity between two products
+const calculateSimilarity = (product1: Product, product2: Product): number => {
+  let similarityScore = 0
+  const maxScore = 6 // Total possible score
+
+  // Category similarity (exact match = 1, different = 0)
+  if (product1.category === product2.category) {
+    similarityScore += 1
+  }
+
+  // Bedrooms similarity (closer = higher score)
+  const bedroomDiff = Math.abs(product1.bedrooms - product2.bedrooms)
+  if (bedroomDiff === 0) {
+    similarityScore += 1
+  } else if (bedroomDiff === 1) {
+    similarityScore += 0.8
+  } else if (bedroomDiff === 2) {
+    similarityScore += 0.5
+  } else {
+    similarityScore += 0.2
+  }
+
+  // Bathrooms similarity (closer = higher score)
+  const bathroomDiff = Math.abs(product1.bathrooms - product2.bathrooms)
+  if (bathroomDiff === 0) {
+    similarityScore += 1
+  } else if (bathroomDiff === 1) {
+    similarityScore += 0.8
+  } else if (bathroomDiff === 2) {
+    similarityScore += 0.5
+  } else {
+    similarityScore += 0.2
+  }
+
+  // Floors similarity (closer = higher score)
+  const floorDiff = Math.abs(product1.floors - product2.floors)
+  if (floorDiff === 0) {
+    similarityScore += 1
+  } else if (floorDiff === 1) {
+    similarityScore += 0.8
+  } else {
+    similarityScore += 0.3
+  }
+
+  // Area similarity (percentage-based)
+  const areaDiff = Math.abs(product1.area - product2.area)
+  const areaPercentage = areaDiff / Math.max(product1.area, product2.area)
+  if (areaPercentage <= 0.1) { // Within 10%
+    similarityScore += 1
+  } else if (areaPercentage <= 0.2) { // Within 20%
+    similarityScore += 0.8
+  } else if (areaPercentage <= 0.3) { // Within 30%
+    similarityScore += 0.6
+  } else if (areaPercentage <= 0.5) { // Within 50%
+    similarityScore += 0.4
+  } else {
+    similarityScore += 0.1
+  }
+
+  // Price similarity (percentage-based)
+  const priceDiff = Math.abs(product1.price - product2.price)
+  const pricePercentage = priceDiff / Math.max(product1.price, product2.price)
+  if (pricePercentage <= 0.1) { // Within 10%
+    similarityScore += 1
+  } else if (pricePercentage <= 0.2) { // Within 20%
+    similarityScore += 0.8
+  } else if (pricePercentage <= 0.3) { // Within 30%
+    similarityScore += 0.6
+  } else if (pricePercentage <= 0.5) { // Within 50%
+    similarityScore += 0.4
+  } else {
+    similarityScore += 0.1
+  }
+
+  return similarityScore / maxScore
+}
+
+// Function to get similar products
+const getSimilarProducts = (currentProduct: Product, allProducts: Product[], count: number = 3) => {
+  return allProducts
+    .filter(p => p.id !== currentProduct.id)
+    .map(product => ({
+      product,
+      similarity: calculateSimilarity(currentProduct, product)
+    }))
+    .sort((a, b) => b.similarity - a.similarity)
+    .slice(0, count)
+    .map(item => item.product)
 }
 
 export default function ProductDetailClient({ product }: ProductDetailClientProps) {
@@ -266,6 +358,124 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* You May Also Like Section */}
+      <div className="mt-16 border-t border-gray-200 pt-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-8">{t('products.youMayAlsoLike')}</h2>
+          <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+            {getSimilarProducts(product, allProducts).map((relatedProduct) => {
+              const relatedProductTranslation = useProductTranslation(relatedProduct.id)
+              return (
+                <div key={relatedProduct.id} className="group relative flex flex-col h-full">
+                  <div className="w-full h-48 overflow-hidden rounded-lg bg-gray-200">
+                    <Link href={`/product/${relatedProduct.id}`}>
+                      <img
+                        src={relatedProduct.image}
+                        alt={relatedProductTranslation.name}
+                        className="w-full h-full object-cover object-center group-hover:opacity-75 transition-opacity"
+                      />
+                    </Link>
+                    <button
+                      onClick={() => {
+                        if (isRemembered(relatedProduct.id)) {
+                          removeFromRemembered(relatedProduct.id)
+                        } else {
+                          addToRemembered({
+                            id: relatedProduct.id,
+                            name: relatedProductTranslation.name,
+                            price: relatedProduct.price,
+                            image: relatedProduct.image,
+                            description: relatedProductTranslation.description,
+                          })
+                        }
+                      }}
+                      className="absolute top-2 right-2 p-1 rounded-full bg-white/80 hover:bg-white transition-colors"
+                    >
+                      {isRemembered(relatedProduct.id) ? (
+                        <HeartIcon className="h-4 w-4 text-red-500" />
+                      ) : (
+                        <HeartOutlineIcon className="h-4 w-4 text-gray-600" />
+                      )}
+                    </button>
+                  </div>
+                  
+                  <div className="mt-4 flex flex-col flex-grow">
+                    <div className="flex justify-between mb-2">
+                      <div className="flex-grow min-w-0">
+                        <h3 className="text-sm text-gray-700 font-medium truncate">
+                          <Link href={`/product/${relatedProduct.id}`} className="hover:text-gray-900 transition-colors">
+                            {relatedProductTranslation.name}
+                          </Link>
+                        </h3>
+                      </div>
+                      <p className="text-sm font-medium text-gray-900 ml-2 flex-shrink-0">${relatedProduct.price}</p>
+                    </div>
+                    
+                    <div className="h-8 overflow-hidden mb-2">
+                      <p className="text-xs text-gray-500 leading-4">{relatedProductTranslation.description}</p>
+                    </div>
+                    
+                    <div className="flex items-center text-xs text-gray-500 mb-2">
+                      <span>{relatedProduct.bedrooms} {t('products.bedrooms')}</span>
+                      <span className="mx-1">•</span>
+                      <span>{relatedProduct.bathrooms} {t('products.bathrooms')}</span>
+                      <span className="mx-1">•</span>
+                      <span>{relatedProduct.area} {t('products.area')}</span>
+                    </div>
+                    
+                    <div className="flex items-center mb-3">
+                      <div className="flex items-center">
+                        {[0, 1, 2, 3, 4].map((rating) => (
+                          <StarIcon
+                            key={rating}
+                            className={`h-3 w-3 flex-shrink-0 ${
+                              relatedProduct.rating > rating ? 'text-yellow-400' : 'text-gray-200'
+                            }`}
+                            aria-hidden="true"
+                          />
+                        ))}
+                      </div>
+                      <p className="ml-1 text-xs text-gray-500">({relatedProduct.reviewCount})</p>
+                    </div>
+                    
+                    <div className="mt-auto flex gap-2">
+                      <Link
+                        href={`/product/${relatedProduct.id}`}
+                        className="flex-1 text-center py-2 px-3 border border-gray-300 rounded-md text-xs font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                      >
+                        {t('products.viewDetails')}
+                      </Link>
+                      <button
+                        onClick={() => {
+                          if (isRemembered(relatedProduct.id)) {
+                            removeFromRemembered(relatedProduct.id)
+                          } else {
+                            addToRemembered({
+                              id: relatedProduct.id,
+                              name: relatedProductTranslation.name,
+                              price: relatedProduct.price,
+                              image: relatedProduct.image,
+                              description: relatedProductTranslation.description,
+                            })
+                          }
+                        }}
+                        className={`flex-1 text-center py-2 px-3 rounded-md text-xs font-medium transition-colors ${
+                          isRemembered(relatedProduct.id)
+                            ? 'border border-red-300 text-red-700 hover:bg-red-50'
+                            : 'border border-primary-300 text-primary-700 hover:bg-primary-50'
+                        }`}
+                      >
+                        {isRemembered(relatedProduct.id) ? t('remembered.remove') : t('remembered.add')}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>
