@@ -19,6 +19,19 @@ import { useFilter } from '@/contexts/FilterContext'
 import { useProductTranslation } from '@/utils/productTranslations'
 import ProductInquiryForm from '@/components/ProductInquiryForm'
 
+// This function is required for static export
+export async function generateStaticParams() {
+  // Return all possible product IDs
+  return [
+    { id: '1' },
+    { id: '2' },
+    { id: '3' },
+    { id: '4' },
+    { id: '5' },
+    { id: '6' },
+  ]
+}
+
 export default function ProductDetailPage() {
   const params = useParams()
   const productId = params.id as string
