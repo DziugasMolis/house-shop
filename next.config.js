@@ -21,6 +21,9 @@ const nextConfig = {
   
   // Base path for GitHub Pages
   basePath: process.env.NODE_ENV === 'production' ? '/house-shop' : '',
+  
+  // Asset prefix for static assets
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/house-shop/' : '',
 }
 
 module.exports = nextConfig 

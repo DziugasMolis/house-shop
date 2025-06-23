@@ -13,12 +13,18 @@ export interface Product {
   reviewCount: number
 }
 
+// Helper function to get correct image path for production
+const getImagePath = (path: string) => {
+  const basePath = process.env.NODE_ENV === 'production' ? '/house-shop' : ''
+  return `${basePath}${path}`
+}
+
 export const allProducts: Product[] = [
   {
     id: '1',
     name: 'Modern Minimalist Villa',
     price: 2500,
-    image: '/images/products/product-1.jpg',
+    image: getImagePath('/images/products/product-1.jpg'),
     description: 'Contemporary 3-bedroom villa with open floor plan and sustainable features.',
     category: 'Modern',
     bedrooms: 3,
@@ -32,7 +38,7 @@ export const allProducts: Product[] = [
     id: '2',
     name: 'Classic Family Home',
     price: 3200,
-    image: '/images/products/product-2.jpg',
+    image: getImagePath('/images/products/product-2.jpg'),
     description: 'Traditional 4-bedroom family home with spacious kitchen and backyard.',
     category: 'Traditional',
     bedrooms: 4,
@@ -46,7 +52,7 @@ export const allProducts: Product[] = [
     id: '3',
     name: 'Luxury Penthouse Design',
     price: 4500,
-    image: '/images/products/product-3.jpg',
+    image: getImagePath('/images/products/product-3.jpg'),
     description: 'Premium penthouse with panoramic views and high-end finishes.',
     category: 'Luxury',
     bedrooms: 3,
@@ -60,7 +66,7 @@ export const allProducts: Product[] = [
     id: '4',
     name: 'Cozy Cottage',
     price: 1800,
-    image: '/images/products/product-4.jpg',
+    image: getImagePath('/images/products/product-4.jpg'),
     description: 'Charming 2-bedroom cottage perfect for small families or couples.',
     category: 'Cottage',
     bedrooms: 2,
@@ -74,7 +80,7 @@ export const allProducts: Product[] = [
     id: '5',
     name: 'Scandinavian Style House',
     price: 2800,
-    image: '/images/products/product-5.jpg',
+    image: getImagePath('/images/products/product-5.jpg'),
     description: 'Clean and functional design with natural materials and plenty of light.',
     category: 'Modern',
     bedrooms: 3,
@@ -88,7 +94,7 @@ export const allProducts: Product[] = [
     id: '6',
     name: 'Contemporary Urban Home',
     price: 3500,
-    image: '/images/products/product-6.jpg',
+    image: getImagePath('/images/products/product-6.jpg'),
     description: 'Modern urban dwelling with smart home features and rooftop garden.',
     category: 'Modern',
     bedrooms: 4,
