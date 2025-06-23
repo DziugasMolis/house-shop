@@ -10,6 +10,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 // Static metadata for better SEO
 export const metadata: Metadata = {
+  metadataBase: new URL('https://dziugasmolis.github.io'),
   title: 'Individualūs Namų Projektai | Individual House Projects',
   description: 'Naršykite mūsų visą premium namų projektų kolekciją. Filtruokite pagal stilių, dydį ir kainą, kad rastumėte tobulą dizainą savo poreikiams.',
   keywords: 'namų projektai, individualūs namų projektai, namų dizainas, architektūra, namų planai, statyba',

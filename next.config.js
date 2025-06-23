@@ -1,19 +1,25 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Static export for GitHub Pages
+  output: 'export',
+  trailingSlash: true,
+  
   experimental: {
     optimizePackageImports: ['@heroicons/react'],
   },
-  // Enable static optimization where possible
-  trailingSlash: false,
-  // Optimize images
+  
+  // Optimize images for static export
   images: {
+    unoptimized: true,
     domains: [],
-    unoptimized: false,
   },
+  
   // Reduce client-side rendering warnings
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
+  
+  // Base path for GitHub Pages
   basePath: process.env.NODE_ENV === 'production' ? '/house-shop' : '',
 }
 
