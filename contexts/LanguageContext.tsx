@@ -42,11 +42,19 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   }
 
   useEffect(() => {
-    // Load preferred language from localStorage on mount
+    // Load preferred language from localStorage or browser locale on mount
     if (typeof window !== 'undefined') {
       const savedLanguage = localStorage.getItem('preferred-language') as Language
       if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'lt')) {
         setLanguageState(savedLanguage)
+      } else {
+        // Detect browser language
+        const browserLang = navigator.language || (navigator.languages && navigator.languages[0]) || 'en'
+        if (browserLang.toLowerCase().startsWith('lt')) {
+          setLanguageState('lt')
+        } else {
+          setLanguageState('en')
+        }
       }
     }
   }, [])

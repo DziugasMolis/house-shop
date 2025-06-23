@@ -1,14 +1,14 @@
 {
   "navigation": {
     "home": "Home",
-    "shop": "Shop",
+    "shop": "House Projects",
     "about": "About",
     "blog": "Blog",
     "contact": "Contact"
   },
   "breadcrumb": {
     "home": "Home",
-    "shop": "Shop"
+    "shop": "House Projects"
   },
   "hero": {
     "badge": "What's new",
@@ -147,9 +147,7 @@
     "valuesText": "Quality, innovation, sustainability, and customer satisfaction are at the heart of everything we do.",
     "stats": {
       "projects": "Projects Completed",
-      "architects": "Expert Architects",
-      "experience": "Years Experience",
-      "satisfaction": "Customer Satisfaction"
+      "experience": "Years Experience"
     },
     "features": {
       "designTeam": "Expert Design Team",
@@ -167,9 +165,11 @@
     "description": "Have questions about our house projects? Need help choosing the right design? Our team is here to help you every step of the way.",
     "getInTouch": "Get in touch",
     "address": "Address",
-    "addressText": "123 Main Street, City, State 12345",
+    "addressText": "Šiauliai",
     "phone": "Phone",
+    "phoneText": "+1 (555) 234-5678",
     "email": "Email",
+    "emailText": "email@gmail.com",
     "form": {
       "name": "Name",
       "email": "Email",

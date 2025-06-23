@@ -6,6 +6,7 @@ import { HeartIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useRememberedProjectsStore } from '@/store/rememberedProjectsStore'
 import { useLanguage } from '@/contexts/LanguageContext'
 import LanguageSwitcher from './LanguageSwitcher'
+import Logo from './Logo'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -24,9 +25,7 @@ export default function Header() {
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5">
-            <span className="text-2xl font-bold text-primary-600">House Shop</span>
-          </Link>
+          <Logo />
         </div>
         <div className="flex lg:hidden">
           <button
@@ -68,9 +67,7 @@ export default function Header() {
           <div className="fixed inset-0 z-50" />
           <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
-              <Link href="/" className="-m-1.5 p-1.5">
-                <span className="text-2xl font-bold text-primary-600">House Shop</span>
-              </Link>
+              <Logo />
               <button
                 type="button"
                 className="-m-2.5 rounded-md p-2.5 text-gray-700"

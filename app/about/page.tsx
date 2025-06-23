@@ -44,22 +44,14 @@ export default function AboutPage() {
         </div>
 
         <div className="mx-auto mt-16 max-w-2xl lg:mx-0 lg:max-w-none">
-          <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-2">
             <div className="text-center">
               <div className="text-3xl font-bold text-primary-600">500+</div>
               <div className="text-sm text-gray-600">{t('about.stats.projects')}</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary-600">50+</div>
-              <div className="text-sm text-gray-600">{t('about.stats.architects')}</div>
-            </div>
-            <div className="text-center">
               <div className="text-3xl font-bold text-primary-600">10+</div>
               <div className="text-sm text-gray-600">{t('about.stats.experience')}</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-primary-600">98%</div>
-              <div className="text-sm text-gray-600">{t('about.stats.satisfaction')}</div>
             </div>
           </div>
         </div>

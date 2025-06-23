@@ -1,32 +1,32 @@
 {
   "navigation": {
     "home": "Pradžia",
-    "shop": "Parduotuvė",
+    "shop": "Namų Projektai",
     "about": "Apie",
     "blog": "Tinklaraštis",
     "contact": "Kontaktai"
   },
   "breadcrumb": {
     "home": "Pradžia",
-    "shop": "Parduotuvė"
+    "shop": "Namų Projektai"
   },
   "hero": {
     "badge": "Kas naujo",
     "badgeText": "Ką tik išleista v1.0",
     "title": "Išsirinkite savo namo projektą",
-    "description": "Atraskite mūsų kruopščiai suprojektuotų namų projektų kolekciją. Nuo modernių minimalistinių namų iki klasikinių šeimos rezidencijų, raskite tobulą planą savo svajonių namui. Kiekvienas projektas turi detales planus, 3D vizualizacijas ir ekspertų vadovavimą.",
+    "description": "Atraskite mūsų kruopščiai suprojektuotų namų projektų kolekciją. Raskite tobulą planą savo svajonių namui. Kiekvienas projektas turi visus reikalingus dokumentus, kad galėtumėte jį įsigyti ir pastatyti.",
     "browseButton": "Naršyti Projektus",
     "learnMore": "Sužinoti daugiau"
   },
   "featured": {
-    "title": "Išskirti Namų Projektai",
-    "description": "Tyrinėkite mūsų populiariausius ir inovatyviausius namų dizainus, kurie padėjo nesuskaičiuojamoms šeimoms pastatyti savo svajonių namus.",
+    "title": "Namų Projektai",
+    "description": "Apžiūrėkite mūsų populiariausius ir inovatyviausius namų projektus.",
     "bedrooms": "miegamieji",
     "bathrooms": "vonios",
     "viewAll": "Peržiūrėti Visus Projektus"
   },
   "products": {
-    "featured": "Išskirti Namų Projektai",
+    "featured": "Namų Projektai",
     "browseAll": "Naršyti visus projektus",
     "addToCart": "Pridėti į Krepšelį",
     "viewDetails": "Peržiūrėti Detales",
@@ -136,9 +136,9 @@
     "remove": "Pašalinti"
   },
   "about": {
-    "title": "Apie Namų Parduotuvę",
+    "title": "Apie mus",
     "subtitle": "Kuriame Svajones, Vieną Projektą Vienu Metu",
-    "description": "Mes specializuojamės kuriant premium namų projektus, kurie sujungia inovatyvų dizainą su praktiška funkcionalumu. Mūsų tikslas - padėti jums pastatyti savo svajonių namą su profesionaliais planais ir ekspertų vadovavimu.",
+    "description": "Mes specializuojamės kuriant individualius namų projektus, kurie įgyvendina jūsų svajones. Mūsų tikslas - padėti jums pastatyti savo svajonių namą su su visais reikalingais dokumentais.",
     "mission": "Mūsų Misija",
     "missionText": "Teikti inovatyvius, aukštos kokybės namų projektus, kurie padeda žmonėms pastatyti savo svajonių namus su pasitikėjimu ir stiliumi.",
     "vision": "Mūsų Vizija",
@@ -147,29 +147,29 @@
     "valuesText": "Kokybė, inovacijos, tvarumas ir klientų pasitenkinimas yra visko, ką darome, šerdis.",
     "stats": {
       "projects": "Atlikti Projektai",
-      "architects": "Ekspertų Architektų",
-      "experience": "Metų Patirties",
-      "satisfaction": "Klientų Pasitenkinimas"
+      "experience": "Metų Patirties"
     },
     "features": {
-      "designTeam": "Ekspertų Dizaino Komanda",
-      "designTeamDesc": "Mūsų patyrusių architektų ir dizainerių komanda kuria inovatyvius, funkcionalius ir gražius namų projektus.",
+      "designTeam": "Ilgametė patirtis",
+      "designTeamDesc": "Ne vienerių metų patirtis kuriant individualius namų projektus.",
       "documentation": "Detalūs Dokumentai",
-      "documentationDesc": "Kiekvienas projektas apima išsamius planus, 3D vizualizacijas, medžiagų sąrašus ir statybos gaires.",
+      "documentationDesc": "Kiekvienas namo projektas turi visus reikalingus dokumentus, kad galėtumėte jį pastatyti.",
       "quality": "Kokybės Užtikrinimas",
-      "qualityDesc": "Visi mūsų dizainai praeina kruopščius kokybės patikrinimus, kad būtų užtikrinta, jog jie atitinka statybos kodus ir pramonės standartus.",
+      "qualityDesc": "Visi mūsų projektai atitinka įstatymus, kad būtų užtikrinta, jog namas būtų sėkmingai priduotas.",
       "support": "Nuolatinė Palaikymas",
-      "supportDesc": "Gaukite ekspertų vadovavimą visą statybos procesą su mūsų specializuota palaikymo komanda."
+      "supportDesc": "Mūsų komanda čia, kad padėtų jums kiekviename žingsnyje."
     }
   },
   "contact": {
     "title": "Susisiekite",
-    "description": "Turite klausimų apie mūsų namų projektus? Reikia pagalbos pasirinkti tinkamą dizainą? Mūsų komanda čia, kad padėtų jums kiekviename žingsnyje.",
+    "description": "Turite klausimų apie mūsų namų projektus? Reikia pagalbos pasirinkti tinkamą projektą? Mūsų komanda čia, kad padėtų jums kiekviename žingsnyje.",
     "getInTouch": "Susisiekite",
     "address": "Adresas",
-    "addressText": "Pagrindinė g. 123, Miestas, Valstija 12345",
+    "addressText": "Šiauliai",
     "phone": "Telefonas",
+    "phoneText": "+1 (555) 234-5678",
     "email": "El. paštas",
+    "emailText": "email@gmail.com",
     "form": {
       "name": "Vardas",
       "email": "El. paštas",

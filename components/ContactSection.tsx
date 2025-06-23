@@ -171,8 +171,8 @@ This message was sent from the House Shop contact form.
                   </svg>
                 </dt>
                 <dd>
-                  <a className="hover:text-gray-900" href="tel:+1 (555) 234-5678">
-                    +1 (555) 234-5678
+                  <a className="hover:text-gray-900" href={`tel:${t('contact.phoneText')}`}>
+                    {t('contact.phoneText')}
                   </a>
                 </dd>
               </div>
@@ -184,8 +184,8 @@ This message was sent from the House Shop contact form.
                   </svg>
                 </dt>
                 <dd>
-                  <a className="hover:text-gray-900" href="mailto:email@gmail.com">
-                  email@gmail.com
+                  <a className="hover:text-gray-900" href={`mailto:${t('contact.emailText')}`}>
+                    {t('contact.emailText')}
                   </a>
                 </dd>
               </div>

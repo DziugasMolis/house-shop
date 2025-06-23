@@ -54,37 +54,34 @@ export default function FeaturedProducts() {
             const productTranslation = useProductTranslation(product.id)
             
             return (
-              <article key={product.id} className="flex flex-col items-start">
-                <div className="relative w-full">
-                  <img
-                    src={product.image}
-                    alt={productTranslation.name}
-                    className="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
-                  />
-                  <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
-                </div>
-                <div className="mt-8 flex items-center gap-x-4 text-xs">
-                  <time dateTime="2020-03-16" className="text-gray-500">
-                    {product.category}
-                  </time>
-                  <span className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">
-                    ${product.price.toLocaleString()}
-                  </span>
-                </div>
-                <div className="group relative">
-                  <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                    <Link href={`/shop/${product.id}`}>
-                      <span className="absolute inset-0" />
-                      {productTranslation.name}
-                    </Link>
-                  </h3>
+              <Link key={product.id} href={`/product/${product.id}`} className="flex flex-col items-start group focus:outline-none" tabIndex={0} aria-label={productTranslation.name}>
+                <article className="w-full">
+                  <div className="relative w-full">
+                    <img
+                      src={product.image}
+                      alt={productTranslation.name}
+                      className="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2] group-hover:opacity-80 transition-opacity"
+                    />
+                    <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
+                  </div>
+                  <div className="mt-8 flex items-center gap-x-4 text-xs">
+                    <time className="text-gray-500">
+                      {product.category}
+                    </time>
+                    <span className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 group-hover:bg-gray-100">
+                      ${product.price.toLocaleString()}
+                    </span>
+                  </div>
+                  <div className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                    {productTranslation.name}
+                  </div>
                   <div className="mt-4 flex items-center gap-4 text-sm text-gray-600">
                     <span>{product.bedrooms} {t('featured.bedrooms')}</span>
                     <span>{product.bathrooms} {t('featured.bathrooms')}</span>
                     <span>{product.area}</span>
                   </div>
-                </div>
-              </article>
+                </article>
+              </Link>
             )
           })}
         </div>
