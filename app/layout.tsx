@@ -8,10 +8,16 @@ import { FilterProvider } from '@/contexts/FilterContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
+// Static metadata for better SEO
 export const metadata: Metadata = {
-  title: 'House Shop - Premium House Projects',
-  description: 'Discover beautiful and innovative house projects. From modern designs to classic architecture, find your perfect home blueprint.',
-  keywords: 'house projects, home design, architecture, house plans, construction',
+  title: 'Individualūs Namų Projektai | Individual House Projects',
+  description: 'Naršykite mūsų visą premium namų projektų kolekciją. Filtruokite pagal stilių, dydį ir kainą, kad rastumėte tobulą dizainą savo poreikiams.',
+  keywords: 'namų projektai, individualūs namų projektai, namų dizainas, architektūra, namų planai, statyba',
+  openGraph: {
+    title: 'Individualūs Namų Projektai',
+    description: 'Premium namų projektų kolekcija',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({

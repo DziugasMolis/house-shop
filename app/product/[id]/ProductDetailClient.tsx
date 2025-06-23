@@ -114,6 +114,13 @@ const getSimilarProducts = (currentProduct: Product, allProducts: Product[], cou
     .map(item => item.product)
 }
 
+// Mock similar products for demonstration
+const similarProducts = [
+  '/images/products/product-1.jpg',
+  '/images/products/product-2.jpg',
+  '/images/products/product-3.jpg',
+]
+
 export default function ProductDetailClient({ product }: ProductDetailClientProps) {
   const [selectedImage, setSelectedImage] = useState(0)
   const [isInquiryOpen, setIsInquiryOpen] = useState(false)

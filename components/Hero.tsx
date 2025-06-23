@@ -32,7 +32,7 @@ export default function Hero() {
         <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
           <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
             <img
-              src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2075&q=80"
+              src="/images/hero/hero-bg.jpg"
               alt="Modern house design"
               className="w-[76rem] rounded-md bg-white/5 shadow-2xl ring-1 ring-white/10"
             />

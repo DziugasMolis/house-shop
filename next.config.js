@@ -1,10 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  trailingSlash: true,
+  experimental: {
+    optimizePackageImports: ['@heroicons/react'],
+  },
+  // Enable static optimization where possible
+  trailingSlash: false,
+  // Optimize images
   images: {
-    unoptimized: true,
-    domains: ['images.unsplash.com'],
+    domains: [],
+    unoptimized: false,
+  },
+  // Reduce client-side rendering warnings
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
   },
   basePath: process.env.NODE_ENV === 'production' ? '/house-shop' : '',
 }

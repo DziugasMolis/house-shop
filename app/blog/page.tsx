@@ -11,7 +11,7 @@ const blogPosts = [
     author: 'Sarah Johnson',
     date: 'January 15, 2024',
     readTime: '5 min read',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    image: '/images/products/product-1.jpg',
     category: 'Design Trends',
   },
   {
@@ -21,7 +21,7 @@ const blogPosts = [
     author: 'Michael Chen',
     date: 'January 10, 2024',
     readTime: '7 min read',
-    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80',
+    image: '/images/products/product-2.jpg',
     category: 'Sustainability',
   },
   {
@@ -31,7 +31,7 @@ const blogPosts = [
     author: 'Emily Rodriguez',
     date: 'January 5, 2024',
     readTime: '6 min read',
-    image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    image: '/images/products/product-3.jpg',
     category: 'Interior Design',
   },
   {
@@ -41,7 +41,7 @@ const blogPosts = [
     author: 'David Kim',
     date: 'December 28, 2023',
     readTime: '8 min read',
-    image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    image: '/images/products/product-4.jpg',
     category: 'Technology',
   },
 ]

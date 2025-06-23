@@ -1,6 +1,7 @@
 'use client'
 
 import React, { createContext, useContext, useState, useEffect } from 'react'
+import { getInitialLanguage } from '@/utils/getInitialLanguage'
 
 type Language = 'en' | 'lt'
 
@@ -13,7 +14,7 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('en')
+  const [language, setLanguageState] = useState<Language>(() => 'en')
   const [translations, setTranslations] = useState({})
 
   useEffect(() => {
@@ -43,20 +44,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // Load preferred language from localStorage or browser locale on mount
-    if (typeof window !== 'undefined') {
-      const savedLanguage = localStorage.getItem('preferred-language') as Language
-      if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'lt')) {
-        setLanguageState(savedLanguage)
-      } else {
-        // Detect browser language
-        const browserLang = navigator.language || (navigator.languages && navigator.languages[0]) || 'en'
-        if (browserLang.toLowerCase().startsWith('lt')) {
-          setLanguageState('lt')
-        } else {
-          setLanguageState('en')
-        }
-      }
-    }
+    setLanguageState(getInitialLanguage())
   }, [])
 
   const t = (key: string): string => {

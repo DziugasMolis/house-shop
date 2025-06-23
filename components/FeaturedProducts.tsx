@@ -7,33 +7,45 @@ import { useProductTranslation } from '@/utils/productTranslations'
 const featuredProducts = [
   {
     id: '1',
-    name: 'Modern Minimalist House',
-    price: 250000,
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    name: 'Modern Minimalist Villa',
+    price: 2500,
+    image: '/images/products/product-1.jpg',
+    description: 'Contemporary 3-bedroom villa with open floor plan and sustainable features.',
     category: 'Modern',
     bedrooms: 3,
     bathrooms: 2,
-    area: '180m²',
+    area: 180,
+    floors: 2,
+    rating: 4.8,
+    reviewCount: 124,
   },
   {
     id: '2',
-    name: 'Scandinavian Style Villa',
-    price: 320000,
-    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80',
-    category: 'Scandinavian',
+    name: 'Classic Family Home',
+    price: 3200,
+    image: '/images/products/product-2.jpg',
+    description: 'Traditional 4-bedroom family home with spacious kitchen and backyard.',
+    category: 'Traditional',
     bedrooms: 4,
     bathrooms: 3,
-    area: '220m²',
+    area: 220,
+    floors: 2,
+    rating: 4.6,
+    reviewCount: 89,
   },
   {
     id: '3',
-    name: 'Contemporary Family Home',
-    price: 280000,
-    image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-    category: 'Contemporary',
+    name: 'Luxury Penthouse Design',
+    price: 4500,
+    image: '/images/products/product-3.jpg',
+    description: 'Premium penthouse with panoramic views and high-end finishes.',
+    category: 'Luxury',
     bedrooms: 3,
     bathrooms: 2,
-    area: '200m²',
+    area: 160,
+    floors: 1,
+    rating: 4.9,
+    reviewCount: 67,
   },
 ]
 
@@ -78,7 +90,7 @@ export default function FeaturedProducts() {
                   <div className="mt-4 flex items-center gap-4 text-sm text-gray-600">
                     <span>{product.bedrooms} {t('featured.bedrooms')}</span>
                     <span>{product.bathrooms} {t('featured.bathrooms')}</span>
-                    <span>{product.area}</span>
+                    <span>{product.area}m²</span>
                   </div>
                 </article>
               </Link>

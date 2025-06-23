@@ -38,10 +38,6 @@
     "reviews": "atsiliepimai",
     "specifications": "Specifikacijos",
     "featuresLabel": "Funkcijos ir Patogumai",
-    "totalArea": "Bendras Plotas",
-    "floorPlan": "Planas",
-    "garage": "Garažas",
-    "yearBuilt": "Statybos Metai",
     "noProductsFound": "Produktų nerasta",
     "adjustFilters": "Pabandykite pakeisti filtrus, kad pamatytumėte daugiau rezultatų.",
     "inquiry": "Pildyti užklausą",
@@ -68,7 +64,7 @@
     }
   },
   "shop": {
-    "title": "Namų Projektai",
+    "title": "Individualūs Namų Projektai",
     "description": "Naršykite mūsų visą premium namų projektų kolekciją. Filtruokite pagal stilių, dydį ir kainą, kad rastumėte tobulą dizainą savo poreikiams."
   },
   "filters": {
@@ -79,13 +75,8 @@
     "bathrooms": "Vonios",
     "floors": "Aukštai",
     "area": "Plotas (m²)",
-    "priceRange": "Kainos diapazonas",
     "brick": "Plytų",
     "frame": "Karkasinis",
-    "under2000": "Mažiau nei 2000€",
-    "2000to3000": "2000€ - 3000€",
-    "3000to4000": "3000€ - 4000€",
-    "over4000": "Daugiau nei 4000€",
     "areaOptions": {
       "0-100": "Mažiau nei 100 m²",
       "100-150": "100 - 150 m²",
@@ -142,9 +133,9 @@
     "mission": "Mūsų Misija",
     "missionText": "Teikti inovatyvius, aukštos kokybės namų projektus, kurie padeda žmonėms pastatyti savo svajonių namus su pasitikėjimu ir stiliumi.",
     "vision": "Mūsų Vizija",
-    "visionText": "Tapti pirmaujančia platforma premium namų dizainams, sujungiant namų savininkus su išskirtiniais architektūriniais sprendimais.",
+    "visionText": "Pateikti kuo daugiau individualių namų projektų, sujungiant namų savininkus su išskirtiniais sprendimais.",
     "values": "Mūsų Vertybės",
-    "valuesText": "Kokybė, inovacijos, tvarumas ir klientų pasitenkinimas yra visko, ką darome, šerdis.",
+    "valuesText": "Atsakingumas, kokybė ir klientų pasitenkinimas yra visko, ką darome, šerdis.",
     "stats": {
       "projects": "Atlikti Projektai",
       "experience": "Metų Patirties"
@@ -193,12 +184,12 @@
     "minRead": "min skaitymo"
   },
   "footer": {
-    "copyright": "© 2024 Namų Parduotuvė. Visos teisės saugomos."
+    "copyright": "© 2024 Individualūs Namų Projektai. Visos teisės saugomos."
   },
   "metadata": {
-    "title": "Namų Parduotuvė - Premium Namų Projektai",
-    "description": "Atraskite gražius ir inovatyvius namų projektus. Nuo modernių dizainų iki klasikinės architektūros, raskite savo tobulą namo planą.",
-    "keywords": "namų projektai, namų dizainas, architektūra, namų planai, statyba"
+    "title": "Individualūs Namų Projektai",
+    "description": "Naršykite mūsų visą premium namų projektų kolekciją. Filtruokite pagal stilių, dydį ir kainą, kad rastumėte tobulą dizainą savo poreikiams.",
+    "keywords": "namų projektai, individualūs namų projektai, namų dizainas, architektūra, namų planai, statyba"
   },
   "productTranslations": {
     "1": {

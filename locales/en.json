@@ -13,20 +13,20 @@
   "hero": {
     "badge": "What's new",
     "badgeText": "Just shipped v1.0",
-    "title": "Build Your Dream Home with Premium House Projects",
-    "description": "Discover our collection of meticulously designed house projects. From modern minimalist homes to classic family residences, find the perfect blueprint for your dream home. Each project comes with detailed plans, 3D visualizations, and expert guidance.",
+    "title": "Choose Your House Project",
+    "description": "Discover our collection of meticulously designed house projects. Find the perfect plan for your dream home. Each project includes all necessary documentation for you to purchase and build.",
     "browseButton": "Browse Projects",
     "learnMore": "Learn more"
   },
   "featured": {
-    "title": "Featured House Projects",
-    "description": "Explore our most popular and innovative house designs that have helped countless families build their dream homes.",
+    "title": "House Projects",
+    "description": "Explore our most popular and innovative house projects.",
     "bedrooms": "beds",
     "bathrooms": "baths",
     "viewAll": "View All Projects"
   },
   "products": {
-    "featured": "Featured House Projects",
+    "featured": "House Projects",
     "browseAll": "Browse all projects",
     "addToCart": "Add to Cart",
     "viewDetails": "View Details",
@@ -38,10 +38,6 @@
     "reviews": "reviews",
     "specifications": "Specifications",
     "featuresLabel": "Features & Amenities",
-    "totalArea": "Total Area",
-    "floorPlan": "Floor Plan",
-    "garage": "Garage",
-    "yearBuilt": "Year Built",
     "noProductsFound": "No products found",
     "adjustFilters": "Try adjusting your filters to see more results.",
     "inquiry": "Request Information",
@@ -68,8 +64,8 @@
     }
   },
   "shop": {
-    "title": "House Projects",
-    "description": "Browse our complete collection of premium house projects. Filter by style, size, and price to find the perfect design for your needs."
+    "title": "Individual House Projects",
+    "description": "Browse our complete collection of individual house projects. Filter by style, size, and price to find the perfect design for your needs."
   },
   "filters": {
     "title": "Filters",
@@ -79,13 +75,8 @@
     "bathrooms": "Bathrooms",
     "floors": "Floors",
     "area": "Area (m²)",
-    "priceRange": "Price Range",
     "brick": "Brick",
     "frame": "Frame",
-    "under2000": "Under $2,000",
-    "2000to3000": "$2,000 - $3,000",
-    "3000to4000": "$3,000 - $4,000",
-    "over4000": "Over $4,000",
     "areaOptions": {
       "0-100": "Under 100 m²",
       "100-150": "100 - 150 m²",
@@ -136,28 +127,28 @@
     "remove": "Remove"
   },
   "about": {
-    "title": "About House Shop",
+    "title": "About Us",
     "subtitle": "Building Dreams, One Project at a Time",
-    "description": "We specialize in creating premium house projects that combine innovative design with practical functionality. Our mission is to help you build the home of your dreams with professional-grade plans and expert guidance.",
+    "description": "We specialize in creating individual house projects that bring your dreams to life. Our goal is to help you build your dream home with all necessary documentation.",
     "mission": "Our Mission",
     "missionText": "To provide innovative, high-quality house projects that help people build their dream homes with confidence and style.",
     "vision": "Our Vision",
-    "visionText": "To become the leading platform for premium house designs, connecting homeowners with exceptional architectural solutions.",
+    "visionText": "To provide as many individual house projects as possible, connecting homeowners with exceptional solutions.",
     "values": "Our Values",
-    "valuesText": "Quality, innovation, sustainability, and customer satisfaction are at the heart of everything we do.",
+    "valuesText": "Responsibility, quality, and customer satisfaction are at the heart of everything we do.",
     "stats": {
       "projects": "Projects Completed",
       "experience": "Years Experience"
     },
     "features": {
-      "designTeam": "Expert Design Team",
-      "designTeamDesc": "Our team of experienced architects and designers create innovative, functional, and beautiful house projects.",
+      "designTeam": "Years of Experience",
+      "designTeamDesc": "Years of experience creating individual house projects.",
       "documentation": "Detailed Documentation",
-      "documentationDesc": "Every project includes comprehensive plans, 3D visualizations, material lists, and construction guidelines.",
+      "documentationDesc": "Every house project includes all necessary documentation for you to build it.",
       "quality": "Quality Assurance",
-      "qualityDesc": "All our designs undergo rigorous quality checks to ensure they meet building codes and industry standards.",
+      "qualityDesc": "All our projects comply with regulations to ensure successful project delivery.",
       "support": "Ongoing Support",
-      "supportDesc": "Get expert guidance throughout your construction process with our dedicated support team."
+      "supportDesc": "Our team is here to help you every step of the way."
     }
   },
   "contact": {
@@ -193,12 +184,12 @@
     "minRead": "min read"
   },
   "footer": {
-    "copyright": "© 2024 House Shop. All rights reserved."
+    "copyright": "© 2024 Individual House Projects. All rights reserved."
   },
   "metadata": {
-    "title": "House Shop - Premium House Projects",
-    "description": "Discover beautiful and innovative house projects. From modern designs to classic architecture, find your perfect home blueprint.",
-    "keywords": "house projects, home design, architecture, house plans, construction"
+    "title": "Individual House Projects",
+    "description": "Browse our complete collection of individual house projects. Filter by style, size, and price to find the perfect design for your needs.",
+    "keywords": "house projects, individual house projects, house design, architecture, house plans, construction"
   },
   "productTranslations": {
     "1": {
